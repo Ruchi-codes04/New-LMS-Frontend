@@ -144,8 +144,8 @@ const Courses = () => {
       <div className="w-full px-0 sm:px-2 lg:px-4">
         {/* Section Header */}
         <div className="mb-8 px-4 sm:px-6 lg:px-8">
-          <div className="text-sm font-medium text-teal-600 mb-2">
-            Courses Categories
+          <div className="inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-full text-sm font-medium mb-4">
+            Course Categories
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
             Choose your{" "}
