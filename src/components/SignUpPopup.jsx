@@ -20,15 +20,15 @@ const SignUpPopup = () => {
   });
 
   useEffect(() => {
-    // Show popup every 15 seconds
+    // Show popup every 15 minutes (900000 milliseconds)
     const interval = setInterval(() => {
       showSignUpPopup();
-    }, 50000);
+    }, 900000);
 
-    // Show popup for the first time after 15 seconds
+    // Show popup for the first time after 15 minutes
     const initialTimeout = setTimeout(() => {
       showSignUpPopup();
-    }, 50000);
+    }, 900000);
 
     return () => {
       clearInterval(interval);

@@ -1,753 +1,194 @@
-import React, { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  FaStar,
-  FaAward,
-  FaRocket,
-  FaLightbulb,
-  FaChartLine,
-  FaShieldAlt,
-  FaCog,
-  FaGraduationCap,
-} from "react-icons/fa";
-import FAQ from "../../components/FAQ";
-
-// Animated Counter Component
-const AnimatedCounter = ({ end, duration = 2000, suffix = "" }) => {
-  const [count, setCount] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    let startTime;
-    const startCount = 0;
-
-    const updateCount = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const progress = timestamp - startTime;
-      const percentage = Math.min(progress / duration, 1);
-
-      setCount(Math.floor(startCount + (end - startCount) * percentage));
-
-      if (percentage < 1) {
-        requestAnimationFrame(updateCount);
-      }
-    };
-
-    requestAnimationFrame(updateCount);
-  }, [isVisible, end, duration]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      onViewportEnter={() => setIsVisible(true)}
-      className="text-3xl md:text-4xl font-bold text-teal-600 mb-2"
-    >
-      {count.toLocaleString()}
-      {suffix}
-    </motion.div>
-  );
-};
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaArrowLeft, FaUsers, FaClock, FaCheckCircle, FaBuilding } from 'react-icons/fa';
 
 const CorporateTraining = () => {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const [selectedProgram, setSelectedProgram] = useState('all');
 
-  // Statistics data
-  const heroStats = [
-    { number: 470000, label: "Global Learners", suffix: "+" },
-    { number: 7000, label: "Live Classes Every Month", suffix: "+" },
-    { number: 60, label: "Accreditations", suffix: "+" },
-    { number: 4, label: "Countries", suffix: "+" },
+  const programs = [
+    {
+      id: 1,
+      title: "Digital Transformation Training",
+      category: "Technology",
+      duration: "3 months",
+      participants: "50-200",
+      price: "Contact for pricing",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      description: "Comprehensive digital transformation program for enterprises looking to modernize their operations.",
+      features: [
+        "Cloud Migration Strategies",
+        "Digital Process Optimization",
+        "Change Management",
+        "Technology Assessment"
+      ]
+    },
+    {
+      id: 2,
+      title: "Leadership Development Program",
+      category: "Management",
+      duration: "6 months",
+      participants: "20-50",
+      price: "Contact for pricing",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      description: "Develop next-generation leaders with our comprehensive leadership training program.",
+      features: [
+        "Strategic Thinking",
+        "Team Management",
+        "Communication Skills",
+        "Decision Making"
+      ]
+    },
+    {
+      id: 3,
+      title: "Data Science & Analytics",
+      category: "Technology",
+      duration: "4 months",
+      participants: "30-100",
+      price: "Contact for pricing",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      description: "Transform your workforce with data-driven decision making capabilities.",
+      features: [
+        "Data Analysis Techniques",
+        "Machine Learning Basics",
+        "Business Intelligence",
+        "Predictive Analytics"
+      ]
+    }
   ];
 
-  // Client logos data
-  const clientLogos = [
-    "TCS",
-    "Infosys",
-    "Wipro",
-    "Accenture",
-    "IBM",
-    "Microsoft",
-    "Amazon",
-    "Google",
-    "Deloitte",
-    "KPMG",
-    "EY",
-    "PwC",
-    "HCL",
-    "Tech Mahindra",
-    "Capgemini",
-    "Oracle",
-  ];
+  const categories = ['all', 'Technology', 'Management', 'Sales', 'Marketing'];
 
-  // Service sections data
-  const services = [
-    {
-      title: "Training Solutions",
-      description:
-        "Our training solutions are designed to meet the unique needs of your organization. We offer customized programs that align with your business objectives and enhance employee skills across various domains.",
-      icon: FaRocket,
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-      stats: [
-        "7000+ Classes per day",
-        "4.6/5 Average rating through reviews",
-        "9+ Awards won",
-      ],
-      gradient: "from-teal-500 to-teal-700",
-    },
-    {
-      title: "E-learning Solutions",
-      description:
-        "Our e-learning solutions offer flexible, interactive learning experiences that can be accessed anytime, anywhere. Perfect for organizations looking to scale their training programs efficiently.",
-      icon: FaLightbulb,
-      image:
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2342&q=80",
-      stats: [
-        "1800+ Hours of content",
-        "95% Repeat business",
-        "900+ Corporate clientele across industries",
-      ],
-      gradient: "from-teal-600 to-teal-800",
-    },
-    {
-      title: "Game-Based Learning",
-      description:
-        "Our game-based learning solutions combine fun and education to create engaging training experiences. This innovative approach significantly improves knowledge retention and learner engagement.",
-      icon: FaChartLine,
-      image:
-        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2126&q=80",
-      stats: [
-        "30% reduction in attrition rates",
-        "3x knowledge retention",
-        "2x faster completion rates",
-      ],
-      gradient: "from-teal-700 to-teal-900",
-    },
-  ];
-
-  // Features data
-  const features = [
-    {
-      icon: FaShieldAlt,
-      title: "Secure Learning",
-      description: "Enterprise-grade security for all training materials",
-    },
-    {
-      icon: FaCog,
-      title: "Customizable",
-      description: "Tailored programs to fit your organization's needs",
-    },
-    {
-      icon: FaGraduationCap,
-      title: "Certified Trainers",
-      description: "Industry experts with proven track records",
-    },
-    {
-      icon: FaChartLine,
-      title: "Analytics",
-      description: "Detailed performance tracking and reporting",
-    },
-  ];
-
-  // Awards data
-  const awards = [
-    { year: "2023", title: "Best Corporate Training Provider", icon: FaAward },
-    { year: "2022", title: "Excellence in E-Learning", icon: FaStar },
-    { year: "2021", title: "Innovation in Training", icon: FaRocket },
-    { year: "2020", title: "Top Learning Platform", icon: FaGraduationCap },
-  ];
-
-  // Review platforms
-  const reviewPlatforms = [
-    { platform: "Forbes", rating: "4.8", reviews: "2.5k" },
-    { platform: "CourseReport", rating: "4.6", reviews: "1.8k" },
-    { platform: "UrbanPro", rating: "5.0", reviews: "3.2k" },
-    { platform: "Google", rating: "5.0", reviews: "4.1k" },
-  ];
-
-  // FAQ data
-  const faqData = [
-    {
-      question: "How are your training programs customized?",
-      answer:
-        "We begin with a thorough needs assessment to understand your organization's specific requirements, challenges, and goals. Based on this assessment, we design a tailored curriculum that addresses your unique needs, incorporating relevant case studies and practical exercises.",
-    },
-    {
-      question: "What delivery formats are available?",
-      answer:
-        "We offer flexible delivery options including in-person training at your location, virtual instructor-led training, hybrid formats, and self-paced online learning. We can recommend the most effective format based on your team's needs and preferences.",
-    },
-    {
-      question: "How many employees can participate in a training program?",
-      answer:
-        "Our programs can accommodate groups of various sizes, from small teams to entire departments. For optimal engagement and learning outcomes, we typically recommend 15-25 participants per session for interactive workshops, though this can be adjusted based on the training format and content.",
-    },
-    {
-      question: "How do you measure training effectiveness?",
-      answer:
-        "We employ a comprehensive evaluation framework that includes pre and post-training assessments, participant feedback, knowledge retention checks, and follow-up evaluations to measure behavioral change and business impact. We provide detailed reports with actionable insights.",
-    },
-    {
-      question: "What industries do you serve?",
-      answer:
-        "We provide corporate training across diverse industries including technology, finance, healthcare, manufacturing, retail, education, and government. Our instructors have industry-specific expertise to ensure relevant and applicable training content.",
-    },
-  ];
+  const filteredPrograms = programs.filter(program =>
+    selectedProgram === 'all' || program.category === selectedProgram
+  );
 
   return (
-    <div className="min-h-screen font-['Poppins'] bg-white overflow-hidden">
-      {/* Hero Section */}
-      <motion.section
-        style={{ y, opacity }}
-        className="relative bg-white pt-8 pb-16 lg:pt-12 lg:pb-24 overflow-hidden min-h-[80vh] flex items-center"
-      >
-        <div className="container mx-auto px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
-            {/* Left Content */}
-            <motion.div
-              className="flex-1 lg:max-w-xl"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-800"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-              >
-                Corporate Training
-              </motion.h1>
-              <motion.h2
-                className="text-xl md:text-2xl lg:text-3xl font-semibold mb-6 text-teal-600"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
-              >
-                Reshaping The Future of Training!
-              </motion.h2>
-              <motion.p
-                className="text-base md:text-lg lg:text-xl mb-8 leading-relaxed text-gray-600 max-w-lg"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}
-              >
-                Invest in upskilling your workforce. Our tailored training
-                programs are designed to drive measurable business outcomes and
-                enhance organizational performance across all levels.
-              </motion.p>
-              <motion.button
-                className="bg-teal-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-teal-700 transition duration-300 transform hover:scale-105 shadow-lg mb-8"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Discover Our Solutions
-              </motion.button>
-            </motion.div>
+    <div className="bg-gray-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Breadcrumb */}
+        <div className="mb-8">
+          <Link to="/" className="flex items-center text-teal-600 hover:text-teal-700 transition-colors">
+            <FaArrowLeft className="mr-2" />
+            <span>Back to Home</span>
+          </Link>
+        </div>
 
-            {/* Right Image */}
-            <motion.div
-              className="flex-1 lg:max-w-xl"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
+        {/* Header */}
+        <div className="mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Corporate Training Programs
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Empower your workforce with our customized corporate training solutions designed to drive business growth and innovation.
+          </p>
+        </div>
+
+        {/* Category Filter */}
+        <div className="mb-8">
+          <div className="flex flex-wrap gap-2">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedProgram(category)}
+                className={`px-4 py-2 rounded-lg transition-colors capitalize ${
+                  selectedProgram === category
+                    ? 'bg-teal-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                {category === 'all' ? 'All Programs' : category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Programs Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {filteredPrograms.map((program) => (
+            <div
+              key={program.id}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
             >
-              <div className="relative">
+              {/* Program Image */}
+              <div className="relative overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&"
-                  alt="Corporate Training"
-                  className="w-full h-80 lg:h-96 object-cover rounded-lg shadow-xl"
+                  src={program.image}
+                  alt={program.title}
+                  className="w-full h-48 object-cover"
                 />
-
-                {/* Floating Stats Card */}
-                <motion.div
-                  className="absolute -bottom-6 -left-6 bg-white rounded-lg p-4 shadow-xl border"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="text-2xl font-bold text-teal-600">
-                    <AnimatedCounter end={470000} suffix="+" />
-                  </div>
-                  <div className="text-sm font-medium text-gray-600">
-                    Global Learners
-                  </div>
-                </motion.div>
-
-                {/* Another Floating Stats Card */}
-                <motion.div
-                  className="absolute -top-6 -right-6 bg-white rounded-lg p-4 shadow-xl border"
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.4 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="text-2xl font-bold text-teal-600">
-                    <AnimatedCounter end={60} suffix="+" />
-                  </div>
-                  <div className="text-sm font-medium text-gray-600">
-                    Accreditations
-                  </div>
-                </motion.div>
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium text-white bg-teal-600">
+                    {program.category}
+                  </span>
+                </div>
               </div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
 
-      {/* Statistics Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-8">
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            {heroStats.map((stat, index) => (
-              <motion.div
-                key={index}
-                className="text-center bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="text-3xl md:text-4xl font-bold text-teal-600 mb-2">
-                  <AnimatedCounter end={stat.number} suffix={stat.suffix} />
-                </div>
-                <div className="text-sm md:text-base font-medium text-gray-600">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Partnerships Section */}
-      <section className="py-16 relative">
-        {/* Background pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        ></div>
-        <div className="container mx-auto px-8">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Explore a realm of opportunities with our partnerships
-          </motion.h2>
-          <div className="overflow-hidden">
-            <motion.div
-              className="flex space-x-12"
-              animate={{
-                x: [0, -1920],
-              }}
-              transition={{
-                duration: 30,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              {[...clientLogos, ...clientLogos].map((client, index) => (
-                <motion.div
-                  key={index}
-                  className="flex-shrink-0 bg-white rounded-lg shadow-md p-6 min-w-[200px] text-center hover:shadow-lg transition-shadow duration-300"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="text-2xl font-bold text-teal-700">
-                    {client}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-8">
-          <motion.h2
-            className="text-4xl font-bold text-center mb-16 text-gray-800"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Why Choose Our Platform?
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="text-center p-6 rounded-lg hover:shadow-xl transition-all duration-300 group"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -10 }}
-              >
-                <motion.div
-                  className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-full mb-4 group-hover:from-teal-600 group-hover:to-teal-700 transition-all duration-300"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <feature.icon className="text-2xl" />
-                </motion.div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-800">
-                  {feature.title}
+              {/* Program Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {program.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-8">
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Get Powerful Outcome-driven Learning Solutions
-          </motion.h2>
+                <p className="text-gray-600 text-sm mb-4">
+                  {program.description}
+                </p>
 
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className={`flex flex-col lg:flex-row items-center gap-12 mb-20 ${
-                index % 2 === 1 ? "lg:flex-row-reverse" : ""
-              }`}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <div className="flex-1">
-                <motion.div
-                  className="flex items-center mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <div
-                    className={`inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br ${service.gradient} text-white rounded-full mr-4`}
-                  >
-                    <service.icon className="text-xl" />
+                <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+                  <div className="flex items-center">
+                    <FaClock className="mr-1" />
+                    <span>{program.duration}</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-800">
-                    {service.title}
-                  </h3>
-                </motion.div>
-                <motion.p
-                  className="text-lg text-gray-600 leading-relaxed mb-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  {service.description}
-                </motion.p>
-                <motion.button
-                  className="bg-teal-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-teal-700 transition duration-300 transform hover:scale-105 shadow-lg"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Learn More
-                </motion.button>
-              </div>
-
-              <motion.div
-                className="flex-1 relative"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
-              >
-                <div className="relative rounded-lg overflow-hidden shadow-xl group">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <motion.div
-                    className="absolute bottom-4 left-4 right-4 bg-white bg-opacity-95 backdrop-blur-sm rounded-lg p-4 shadow-lg"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                  >
-                    {service.stats.map((stat, statIndex) => (
-                      <motion.div
-                        key={statIndex}
-                        className="flex items-center mb-2 last:mb-0"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.6,
-                          delay: 1 + statIndex * 0.1,
-                        }}
-                      >
-                        <FaStar className="text-teal-600 mr-2" />
-                        <span className="text-sm font-medium text-gray-700">
-                          {stat}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                  <div className="flex items-center">
+                    <FaUsers className="mr-1" />
+                    <span>{program.participants}</span>
+                  </div>
                 </div>
-              </motion.div>
-            </motion.div>
+
+                {/* Features */}
+                <div className="mb-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">Key Features:</h4>
+                  <ul className="space-y-1">
+                    {program.features.map((feature, index) => (
+                      <li key={index} className="flex items-center text-sm text-gray-600">
+                        <FaCheckCircle className="mr-2 text-green-500 text-xs" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-lg font-bold text-gray-900">{program.price}</span>
+                  </div>
+                  <button className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
+                    Get Quote
+                  </button>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-      </section>
 
-      {/* Awards Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-8">
-          <motion.div
-            className="flex flex-col lg:flex-row items-center gap-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <motion.div
-              className="flex-1"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <div className="grid grid-cols-2 gap-6">
-                {awards.map((award, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-lg p-6 shadow-lg text-center hover:shadow-xl transition-all duration-300"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, rotate: 2 }}
-                  >
-                    <motion.div
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <award.icon className="text-white text-4xl mx-auto mb-4" />
-                    </motion.div>
-                    <div className="text-2xl font-bold mb-2">{award.year}</div>
-                    <div className="text-sm font-medium">{award.title}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="flex-1"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-white">
-                Reshaping The Future of Training!
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                We take pride in the numerous awards and recognitions we have
-                received over the years. These accolades reflect our commitment
-                to excellence in corporate training and our dedication to
-                helping organizations achieve their learning objectives.
-              </p>
-              <motion.button
-                className="bg-teal-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-teal-700 transition duration-300 transform hover:scale-105 shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View All Awards
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <FAQ
-        title="Frequently Asked Questions"
-        subtitle="Find answers to common questions about our corporate training programs."
-        faqs={faqData}
-      />
-
-      {/* Contact Form Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-8">
-          <div className="max-w-4xl mx-auto">
-            <motion.h2
-              className="text-4xl font-bold text-center mb-12 text-gray-800"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Ready to Transform Your Workforce?
-            </motion.h2>
-            <motion.div
-              className="bg-white rounded-xl p-8 shadow-xl"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  {
-                    label: "Company Name",
-                    type: "text",
-                    placeholder: "Your company name",
-                  },
-                  {
-                    label: "Email",
-                    type: "email",
-                    placeholder: "your.email@company.com",
-                  },
-                  {
-                    label: "Phone",
-                    type: "tel",
-                    placeholder: "+91 9876543210",
-                  },
-                  {
-                    label: "Training Type",
-                    type: "select",
-                    options: [
-                      "Leadership Development",
-                      "Technical Training",
-                      "Soft Skills Training",
-                      "Digital Transformation",
-                    ],
-                  },
-                ].map((field, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  >
-                    <label className="block text-gray-700 font-medium mb-2">
-                      {field.label}
-                    </label>
-                    {field.type === "select" ? (
-                      <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300">
-                        <option>Select Training Type</option>
-                        {field.options.map((option, i) => (
-                          <option key={i}>{option}</option>
-                        ))}
-                      </select>
-                    ) : (
-                      <input
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300 hover:border-teal-400"
-                      />
-                    )}
-                  </motion.div>
-                ))}
-                <motion.div
-                  className="md:col-span-2"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                >
-                  <label className="block text-gray-700 font-medium mb-2">
-                    Type your query...
-                  </label>
-                  <textarea
-                    rows="4"
-                    placeholder="Tell us about your specific training needs and objectives..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all duration-300 hover:border-teal-400"
-                  ></textarea>
-                </motion.div>
-                <motion.div
-                  className="md:col-span-2"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1 }}
-                >
-                  <motion.button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-teal-600 to-teal-700 text-white py-4 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-teal-800 transition duration-300 shadow-lg"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Submit Request
-                  </motion.button>
-                </motion.div>
-              </form>
-            </motion.div>
+        {/* Contact Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
+          <FaBuilding className="mx-auto text-4xl text-teal-600 mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Ready to Transform Your Workforce?
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Contact our corporate training specialists to discuss your organization's specific needs and get a customized training solution.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition-colors">
+              Schedule Consultation
+            </button>
+            <button className="border border-teal-600 text-teal-600 px-8 py-3 rounded-lg hover:bg-teal-50 transition-colors">
+              Download Brochure
+            </button>
           </div>
         </div>
-      </section>
-
-      {/* Reviews Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-8">
-          <motion.h2
-            className="text-3xl font-bold text-center mb-12 text-gray-800"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Trusted by Industry Leaders
-          </motion.h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {reviewPlatforms.map((review, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="text-2xl font-bold text-teal-700 mb-2">
-                  {review.platform}
-                </div>
-                <div className="flex justify-center items-center mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.5 + i * 0.1 }}
-                    >
-                      <FaStar className="text-teal-500 text-sm" />
-                    </motion.div>
-                  ))}
-                </div>
-                <div className="text-lg font-semibold text-gray-700">
-                  {review.rating}
-                </div>
-                <div className="text-sm text-gray-500">
-                  {review.reviews} reviews
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
