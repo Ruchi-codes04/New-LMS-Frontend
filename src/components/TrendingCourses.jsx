@@ -75,8 +75,8 @@ const TrendingCourses = () => {
   };
 
   return (
-    <section className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-left mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-2">Trending <span className="text-teal-600">Courses</span> </h2>
           <p className="text-lg text-gray-600">Find courses that are best for your profession</p>
