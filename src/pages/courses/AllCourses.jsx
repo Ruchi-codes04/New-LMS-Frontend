@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaSearch, FaFilter, FaStar, FaRegClock, FaUserGraduate, FaChevronDown } from 'react-icons/fa';
 
 const AllCourses = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const coursesPerPage = 9;
 
   // Filter states
   const [filters, setFilters] = useState({
@@ -352,6 +354,71 @@ const AllCourses = () => {
 
     return matchesCategory && matchesSearch && matchesPrice && matchesLevel && matchesDuration && matchesRating;
   });
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+  const startIndex = (currentPage - 1) * coursesPerPage;
+  const endIndex = startIndex + coursesPerPage;
+  const currentCourses = filteredCourses.slice(startIndex, endIndex);
+
+  // Pagination handlers
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, searchQuery, filters]);
+
+  // Generate page numbers for pagination
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        for (let i = 1; i <= 4; i++) {
+          pages.push(i);
+        }
+        pages.push('...');
+        pages.push(totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1);
+        pages.push('...');
+        for (let i = totalPages - 3; i <= totalPages; i++) {
+          pages.push(i);
+        }
+      } else {
+        pages.push(1);
+        pages.push('...');
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+          pages.push(i);
+        }
+        pages.push('...');
+        pages.push(totalPages);
+      }
+    }
+
+    return pages;
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -713,6 +780,11 @@ const AllCourses = () => {
             <div className="mb-6 flex justify-between items-center">
               <h2 className="text-xl font-bold text-gray-900">
                 {filteredCourses.length} {filteredCourses.length === 1 ? 'course' : 'courses'} available
+                {totalPages > 1 && (
+                  <span className="text-sm font-normal text-gray-600 ml-2">
+                    (Page {currentPage} of {totalPages})
+                  </span>
+                )}
               </h2>
               <div className="hidden md:block">
                 
@@ -721,7 +793,7 @@ const AllCourses = () => {
             
             {filteredCourses.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredCourses.map(course => (
+                {currentCourses.map(course => (
                   <div key={course.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
                     <div className="relative pb-[56.25%]">
                       <img 
@@ -786,22 +858,50 @@ const AllCourses = () => {
             )}
             
             {/* Pagination */}
-            {filteredCourses.length > 0 && (
+            {filteredCourses.length > 0 && totalPages > 1 && (
               <div className="mt-10 flex justify-center">
                 <nav className="flex items-center">
-                  <button className="px-3 py-1 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                  <button
+                    onClick={handlePrevious}
+                    disabled={currentPage === 1}
+                    className={`px-3 py-1 rounded-l-md border border-gray-300 ${
+                      currentPage === 1
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : 'bg-white text-gray-500 hover:bg-gray-50'
+                    }`}
+                  >
                     Previous
                   </button>
-                  <button className="px-3 py-1 border-t border-b border-gray-300 bg-teal-600 text-white">
-                    1
-                  </button>
-                  <button className="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-                    2
-                  </button>
-                  <button className="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-                    3
-                  </button>
-                  <button className="px-3 py-1 rounded-r-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+
+                  {getPageNumbers().map((page, index) => (
+                    page === '...' ? (
+                      <span key={index} className="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-400">
+                        ...
+                      </span>
+                    ) : (
+                      <button
+                        key={index}
+                        onClick={() => handlePageChange(page)}
+                        className={`px-3 py-1 border-t border-b border-gray-300 ${
+                          currentPage === page
+                            ? 'bg-teal-600 text-white'
+                            : 'bg-white text-gray-700 hover:bg-gray-50'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    )
+                  ))}
+
+                  <button
+                    onClick={handleNext}
+                    disabled={currentPage === totalPages}
+                    className={`px-3 py-1 rounded-r-md border border-gray-300 ${
+                      currentPage === totalPages
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : 'bg-white text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
                     Next
                   </button>
                 </nav>
