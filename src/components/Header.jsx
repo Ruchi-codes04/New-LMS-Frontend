@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FaSearch, FaChevronDown } from "react-icons/fa";
 
 const Header = () => {
@@ -15,9 +16,9 @@ const Header = () => {
 
           {/* Logo */}
           <div className="flex items-center flex-shrink-0">
-            <div className="text-xl font-bold text-teal-600">
+            <Link to="/" className="text-xl font-bold text-teal-600 hover:text-teal-700 transition-colors">
               BRAIN BRIDGE
-            </div>
+            </Link>
           </div>
 
           {/* Search Bar - Desktop */}
@@ -45,6 +46,22 @@ const Header = () => {
                 Review
                 <FaChevronDown className="ml-1 w-2 h-2" />
               </button>
+              <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="py-1" role="menu" aria-orientation="vertical">
+                  <Link to="/reviews/participant" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Participant Reviews</Link>
+                  <Link to="/reviews/video" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Video Reviews</Link>
+                  <Link to="/reviews/corporate" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Corporate Training Reviews</Link>
+                  <Link to="/reviews/college" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">College Training Reviews</Link>
+                  <Link to="/reviews/job-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Job Support Reviews</Link>
+                  <Link to="/reviews/mouthshut" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Mouth Shut Reviews</Link>
+                  <Link to="/reviews/justdial" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Just Dial Reviews</Link>
+                  <Link to="/reviews/reporter" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Reviews Reporter</Link>
+                  <Link to="/reviews/linkedin" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Linkedin Reviews</Link>
+                  <Link to="/reviews/youtube" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Youtube Reviews</Link>
+                  <Link to="/reviews/complaints" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Learner Reviews & Complaints</Link>
+                  <Link to="/reviews/medium" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Medium Reviews</Link>
+                </div>
+              </div>
             </div>
 
             <a href="#" className="text-gray-700 hover:text-teal-600 transition-colors duration-300 text-sm whitespace-nowrap">
@@ -120,10 +137,32 @@ const Header = () => {
                   All Courses
                 </button>
               </li>
-              <li>
-                <a href="#" className="block text-gray-700 hover:text-teal-600">
-                  Review
-                </a>
+              <li className="relative">
+                <button 
+                  className="flex items-center justify-between w-full text-left text-gray-700 hover:text-teal-600"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const submenu = e.currentTarget.nextElementSibling;
+                    submenu.classList.toggle('hidden');
+                  }}
+                >
+                  <span>Review</span>
+                  <FaChevronDown className="w-2 h-2" />
+                </button>
+                <div className="hidden mt-2 ml-4 border-l-2 border-gray-200 pl-4">
+                  <Link to="/reviews/participant" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Participant Reviews</Link>
+                  <Link to="/reviews/video" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Video Reviews</Link>
+                  <Link to="/reviews/corporate" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Corporate Training Reviews</Link>
+                  <Link to="/reviews/college" className="block py-2 text-sm text-gray-700 hover:text-teal-600">College Training Reviews</Link>
+                  <Link to="/reviews/job-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Job Support Reviews</Link>
+                  <Link to="/reviews/mouthshut" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Mouth Shut Reviews</Link>
+                  <Link to="/reviews/justdial" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Just Dial Reviews</Link>
+                  <Link to="/reviews/reporter" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Reviews Reporter</Link>
+                  <Link to="/reviews/linkedin" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Linkedin Reviews</Link>
+                  <Link to="/reviews/youtube" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Youtube Reviews</Link>
+                  <Link to="/reviews/complaints" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Learner Reviews & Complaints</Link>
+                  <Link to="/reviews/medium" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Medium Reviews</Link>
+                </div>
               </li>
               <li>
                 <a href="#" className="block text-gray-700 hover:text-teal-600">

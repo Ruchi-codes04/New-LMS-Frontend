@@ -81,8 +81,8 @@ const PopularCourses = () => {
       <div className="w-full px-0 sm:px-2 lg:px-4">
         {/* Header */}
         <div className="mb-8 px-4 sm:px-6 lg:px-8">
-          <div className="text-sm font-medium text-teal-600 mb-2">
-            TRENDING COURSES
+          <div className="inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-full text-sm font-medium mb-4">
+            Trending Courses
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
             Choose from our{" "}
@@ -153,7 +153,7 @@ const PopularCourses = () => {
                   <button className="flex-1 bg-white border border-gray-300 text-gray-700 py-1.5 sm:py-2 px-2 sm:px-3 rounded text-xs hover:bg-gray-50 transition-colors duration-300">
                     View Program
                   </button>
-                  <button className="flex-1 bg-teal-600 text-white py-1.5 sm:py-2 px-2 sm:px-3 rounded text-xs hover:bg-red-600 transition-colors duration-300 flex items-center justify-center">
+                  <button className="flex-1 bg-teal-600 text-white py-1.5 sm:py-2 px-2 sm:px-3 rounded text-xs hover:bg-teal-500 transition-colors duration-300 flex items-center justify-center">
                     <span className="mr-1">📄</span>
                     Syllabus
                   </button>
