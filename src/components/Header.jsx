@@ -37,9 +37,9 @@ const Header = () => {
 
           {/* Navigation Links - Desktop */}
           <nav className="hidden lg:flex items-center space-x-6 flex-shrink-0">
-            <button className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded text-sm hover:bg-gray-200 transition-colors duration-300">
+            <Link to="/courses/all" className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded text-sm hover:bg-gray-200 transition-colors duration-300">
               All Courses
-            </button>
+            </Link>
 
             <div className="relative group">
               <button className="flex items-center text-gray-700 hover:text-teal-600 transition-colors duration-300 text-sm">
@@ -64,15 +64,25 @@ const Header = () => {
               </div>
             </div>
 
-            <a href="#" className="text-gray-700 hover:text-teal-600 transition-colors duration-300 text-sm whitespace-nowrap">
+            <Link to="/corporate-training" className="text-gray-700 hover:text-teal-600 transition-colors duration-300 text-sm whitespace-nowrap">
               Corporate Training
-            </a>
+            </Link>
 
             <div className="relative group">
               <button className="flex items-center text-gray-700 hover:text-teal-600 transition-colors duration-300 text-sm whitespace-nowrap">
                 Existing Students
                 <FaChevronDown className="ml-1 w-2 h-2" />
               </button>
+              <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="py-1" role="menu" aria-orientation="vertical">
+                  <Link to="/students/CustomerSupport" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Customer Support</Link>
+                  <Link to="/students/Events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Events</Link>
+                  <Link to="/students/InternshipSupport" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Internship Support</Link>
+                  <Link to="/students/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Career Support</Link>
+                  <Link to="/students/support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Certification</Link>
+                  <Link to="/students/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Submit Feedback</Link>
+                </div>
+              </div>
             </div>
 
             <div className="relative group">
@@ -80,6 +90,16 @@ const Header = () => {
                 About Us
                 <FaChevronDown className="ml-1 w-2 h-2" />
               </button>
+              <div className="absolute left-0 mt-2 w-50 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="py-1" role="menu" aria-orientation="vertical">
+                  <Link to="/about/company" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">About Brain Bridge</Link>
+                  <Link to="/about/team" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Affiliation</Link>
+                  <Link to="/about/mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Customers</Link>
+                  <Link to="/about/careers" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Blogs</Link>
+                  <Link to="/about/testimonials" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Placement Partners</Link>
+                  <Link to="/about/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Contact Us</Link>
+                </div>
+              </div>
             </div>
 
             <button className="bg-teal-600 text-white px-4 py-1.5 rounded text-sm hover:bg-teal-700 transition-colors duration-300">
@@ -133,9 +153,9 @@ const Header = () => {
 
             <ul className="flex flex-col gap-4">
               <li>
-                <button className="w-full text-left bg-gray-100 text-gray-700 px-4 py-2 rounded-md">
+                <Link to="/courses/all" className="block w-full text-left bg-gray-100 text-gray-700 px-4 py-2 rounded-md">
                   All Courses
-                </button>
+                </Link>
               </li>
               <li className="relative">
                 <button 
@@ -165,19 +185,51 @@ const Header = () => {
                 </div>
               </li>
               <li>
-                <a href="#" className="block text-gray-700 hover:text-teal-600">
+                <Link to="/corporate-training" className="block text-gray-700 hover:text-teal-600">
                   Corporate Training
-                </a>
+                </Link>
               </li>
-              <li>
-                <a href="#" className="block text-gray-700 hover:text-teal-600">
-                  Existing Students
-                </a>
+              <li className="relative">
+                <button 
+                  className="flex items-center justify-between w-full text-left text-gray-700 hover:text-teal-600"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const submenu = e.currentTarget.nextElementSibling;
+                    submenu.classList.toggle('hidden');
+                  }}
+                >
+                  <span>Existing Students</span>
+                  <FaChevronDown className="w-2 h-2" />
+                </button>
+                <div className="hidden mt-2 ml-4 border-l-2 border-gray-200 pl-4">
+                  <Link to="/students/CustomerSupport" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Customer Support</Link>
+                  <Link to="/students/Events" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Events</Link>
+                  <Link to="/students/InternshipSupport" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Internship Support</Link>
+                  <Link to="/students/resources" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Career Support</Link>
+                  <Link to="/students/support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Certification</Link>
+                  <Link to="/students/profile" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Submit Feedback</Link>
+                </div>
               </li>
-              <li>
-                <a href="#" className="block text-gray-700 hover:text-teal-600">
-                  About Us
-                </a>
+              <li className="relative">
+                <button 
+                  className="flex items-center justify-between w-full text-left text-gray-700 hover:text-teal-600"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const submenu = e.currentTarget.nextElementSibling;
+                    submenu.classList.toggle('hidden');
+                  }}
+                >
+                  <span>About Us</span>
+                  <FaChevronDown className="w-2 h-2" />
+                </button>
+                <div className="hidden mt-2 ml-4 border-l-2 border-gray-200 pl-4">
+                  <Link to="/about/company" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Company</Link>
+                  <Link to="/about/team" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Our Team</Link>
+                  <Link to="/about/mission" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Mission & Vision</Link>
+                  <Link to="/about/careers" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Careers</Link>
+                  <Link to="/about/testimonials" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Testimonials</Link>
+                  <Link to="/about/contact" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Contact Us</Link>
+                </div>
               </li>
               <li>
                 <button className="w-full bg-teal-600 text-white px-6 py-2 rounded-md hover:bg-teal-700">
