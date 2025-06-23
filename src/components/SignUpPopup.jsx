@@ -178,7 +178,7 @@ const SignUpPopup = () => {
           <div className="lg:w-1/2 p-8 flex flex-col justify-center">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Welcome! Sign up or Login
+                Welcome!
               </h2>
             </div>
 
