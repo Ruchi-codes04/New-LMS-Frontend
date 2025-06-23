@@ -576,7 +576,7 @@ const VideoReviews = () => {
               </div>
               <button
                 onClick={handleSearch}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-md transition-colors flex items-center gap-2"
+                className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-md transition-colors flex items-center gap-2"
               >
                 <FaSearch className="text-sm" />
                 SEARCH

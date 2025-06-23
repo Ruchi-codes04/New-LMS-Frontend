@@ -13,7 +13,7 @@ const corporateTrainingReviews = [
     language: "English Language",
     type: "Virtual Training Udaan",
     category: "Training Session",
-    bgColor: "bg-red-600"
+    bgColor: "bg-white"
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const corporateTrainingReviews = [
     language: "Japanese Language N5 Demo Session",
     type: "Globallogic",
     category: "Training Session",
-    bgColor: "bg-orange-500"
+    bgColor: "bg-white"
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const corporateTrainingReviews = [
     language: "Instructional Design Virtual Training Session",
     type: "LPU",
     category: "Training Session",
-    bgColor: "bg-amber-500"
+    bgColor: "bg-white"
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const corporateTrainingReviews = [
     language: "Data Science Corporate Training",
     type: "TCS Digital Transformation",
     category: "Training Session",
-    bgColor: "bg-cyan-600"
+    bgColor: "bg-white"
   },
   {
     id: 5,
@@ -53,7 +53,7 @@ const corporateTrainingReviews = [
     language: "Cloud Computing AWS Training",
     type: "Infosys Cloud Solutions",
     category: "Training Session",
-    bgColor: "bg-violet-600"
+    bgColor: "bg-white"
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ const corporateTrainingReviews = [
     language: "Agile Project Management Training",
     type: "Wipro Enterprise Solutions",
     category: "Training Session",
-    bgColor: "bg-emerald-600"
+    bgColor: "bg-white"
   },
   {
     id: 7,
@@ -73,7 +73,7 @@ const corporateTrainingReviews = [
     language: "Digital Marketing Strategy Session",
     type: "Accenture Digital",
     category: "Training Session",
-    bgColor: "bg-red-600"
+    bgColor: "bg-white"
   },
   {
     id: 8,
@@ -83,7 +83,7 @@ const corporateTrainingReviews = [
     language: "Machine Learning & AI Training",
     type: "Cognizant Technology Solutions",
     category: "Training Session",
-    bgColor: "bg-blue-600"
+    bgColor: "bg-white"
   },
   {
     id: 9,
@@ -93,7 +93,7 @@ const corporateTrainingReviews = [
     language: "Cybersecurity Awareness Training",
     type: "HCL Technologies",
     category: "Training Session",
-    bgColor: "bg-amber-800"
+    bgColor: "bg-white"
   },
   {
     id: 9,
@@ -103,7 +103,7 @@ const corporateTrainingReviews = [
     language: "Cybersecurity Awareness Training",
     type: "HCL Technologies",
     category: "Training Session",
-    bgColor: "bg-amber-800"
+    bgColor: "bg-white"
   }
 ];
 
