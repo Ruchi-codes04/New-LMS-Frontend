@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaSearch, FaFilter, FaStar, FaRegClock, FaUserGraduate, FaChevronDown } from 'react-icons/fa';
+import TrendingCourses from '../../components/TrendingCourses';
 
 const AllCourses = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -487,6 +488,9 @@ const AllCourses = () => {
           </div>
         </div>
       </section>
+
+      {/* Trending Courses Section */}
+      <TrendingCourses />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Category Tabs */}
