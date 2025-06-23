@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaChevronDown } from "react-icons/fa";
+import { useSignUp } from "../contexts/SignUpContext";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { showSignUpPopup } = useSignUp();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -102,7 +104,10 @@ const Header = () => {
               </div>
             </div>
 
-            <button className="bg-teal-600 text-white px-4 py-1.5 rounded text-sm hover:bg-teal-700 transition-colors duration-300">
+            <button
+              onClick={showSignUpPopup}
+              className="bg-teal-600 text-white px-4 py-1.5 rounded text-sm hover:bg-teal-700 transition-colors duration-300"
+            >
               Sign Up
             </button>
           </nav>
@@ -232,7 +237,10 @@ const Header = () => {
                 </div>
               </li>
               <li>
-                <button className="w-full bg-teal-600 text-white px-6 py-2 rounded-md hover:bg-teal-700">
+                <button
+                  onClick={showSignUpPopup}
+                  className="w-full bg-teal-600 text-white px-6 py-2 rounded-md hover:bg-teal-700"
+                >
                   Sign Up
                 </button>
               </li>

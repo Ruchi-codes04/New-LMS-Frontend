@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { SignUpProvider } from './contexts/SignUpContext'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import Courses from './components/Courses'
@@ -11,6 +12,7 @@ import Instructors from './components/Instructors'
 import Blogs from './components/Blogs'
 import Reviews from './components/Reviews'
 import Footer from './components/Footer'
+import SignUpPopup from './components/SignUpPopup'
 import NotFound from './pages/NotFound'
 
 // Import review pages
@@ -76,10 +78,12 @@ const Home = () => {
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen overflow-x-hidden">
-        <Header />
-        <Routes>
+    <SignUpProvider>
+      <Router>
+        <div className="min-h-screen overflow-x-hidden">
+          <Header />
+          <SignUpPopup />
+          <Routes>
           {/* Home Route */}
           <Route path="/" element={<Home />} />
 
@@ -123,6 +127,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </SignUpProvider>
   )
 }
 
