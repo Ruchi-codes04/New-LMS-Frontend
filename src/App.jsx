@@ -116,6 +116,7 @@ function App() {
           {/* Course Routes */}
           <Route path="/courses/all" element={<AllCourses />} />
           <Route path="/corporate-training" element={<CorporateTraining />} />
+
           {/* 404 Route - must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>

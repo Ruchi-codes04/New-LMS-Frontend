@@ -198,16 +198,16 @@ const CorporateTrainingReviews = () => {
           {/* Navigation Menu */}
           <div className="bg-teal-600 rounded-lg p-1 mb-8">
             <div className="flex flex-wrap gap-1 text-sm">
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">About Henry Harvin</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Henry Harvin in Media</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Affiliations</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Customers</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our CSR Activities</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Gallery</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Participant Reviews</button>
-              <button className="px-4 py-2 bg-white text-teal-600 rounded font-medium">Corporate Training Reviews</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">College Training Reviews</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Job Support Reviews</button>
+              <Link to="/about" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">About Henry Harvin</Link>
+              <Link to="/media" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Henry Harvin in Media</Link>
+              <Link to="/affiliations" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Affiliations</Link>
+              <Link to="/customers" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Customers</Link>
+              <Link to="/csr" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our CSR Activities</Link>
+              <Link to="/gallery" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Gallery</Link>
+              <Link to="/reviews/participant" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Participant Reviews</Link>
+              <span className="px-4 py-2 bg-white text-teal-600 rounded font-medium">Corporate Training Reviews</span>
+              <Link to="/reviews/college" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">College Training Reviews</Link>
+              <Link to="/reviews/job-support" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Job Support Reviews</Link>
             </div>
           </div>
         </div>
