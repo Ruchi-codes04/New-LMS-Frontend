@@ -9,7 +9,7 @@ import PopularCourses from './components/PopularCourses'
 import WhyChooseUs from './components/WhyChooseUs'
 import Testimonials from './components/Testimonials'
 import Instructors from './components/Instructors'
-import Blogs from './components/Blogs'
+
 import Reviews from './components/Reviews'
 import Footer from './components/Footer'
 import SignUpPopup from './components/SignUpPopup'
@@ -36,7 +36,7 @@ import {
   AboutBrainBridge,
   OurAffiliation,
   OurCustomers,
-  OurBlogs,
+
   PlacementPartners,
   ContactUs
 } from './pages/about'
@@ -69,7 +69,7 @@ const Home = () => {
         <WhyChooseUs />
         <Testimonials />
         <Instructors />
-        <Blogs />
+
         <Reviews />
       </div>
     </>
@@ -105,7 +105,7 @@ function App() {
           <Route path="/about/company" element={<AboutBrainBridge />} />
           <Route path="/about/team" element={<OurAffiliation />} />
           <Route path="/about/mission" element={<OurCustomers />} />
-          <Route path="/about/careers" element={<OurBlogs />} />
+
           <Route path="/about/testimonials" element={<PlacementPartners />} />
           <Route path="/about/contact" element={<ContactUs />} />
 

@@ -97,7 +97,7 @@ const Header = () => {
                   <Link to="/about/company" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">About Brain Bridge</Link>
                   <Link to="/about/team" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Affiliation</Link>
                   <Link to="/about/mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Customers</Link>
-                  <Link to="/about/careers" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Blogs</Link>
+
                   <Link to="/about/testimonials" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Placement Partners</Link>
                   <Link to="/about/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Contact Us</Link>
                 </div>
@@ -231,7 +231,7 @@ const Header = () => {
                   <Link to="/about/company" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Company</Link>
                   <Link to="/about/team" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Our Team</Link>
                   <Link to="/about/mission" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Mission & Vision</Link>
-                  <Link to="/about/careers" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Careers</Link>
+
                   <Link to="/about/testimonials" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Testimonials</Link>
                   <Link to="/about/contact" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Contact Us</Link>
                 </div>
