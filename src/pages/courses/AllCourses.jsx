@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FaSearch, FaFilter, FaStar, FaRegClock, FaUserGraduate, FaChevronDown } from 'react-icons/fa';
+import { FaSearch, FaFilter, FaStar, FaRegClock, FaUserGraduate, FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import TrendingCourses from '../../components/TrendingCourses';
 import MicrosoftAI from '../../components/MicrosoftAI';
 import FAQ from '../../components/FAQ';
@@ -11,6 +11,7 @@ const AllCourses = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const coursesPerPage = 9;
+  const scrollRef = useRef(null);
 
   // Filter states
   const [filters, setFilters] = useState({
@@ -69,6 +70,19 @@ const AllCourses = () => {
         average: false
       }
     });
+  };
+
+  // Scroll functions for category tabs
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+    }
   };
 
   // Helper function to check if course matches price filter
@@ -526,21 +540,44 @@ const AllCourses = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
         {/* Category Tabs */}
-        <div className="mb-8 overflow-x-auto pb-2">
-          <div className="flex space-x-2 min-w-max">
-            {categories.map(category => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
-                  activeCategory === category.id
-                    ? 'bg-teal-600 text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
+        <div className="mb-8 relative">
+          {/* Left Arrow */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-50 transition-colors"
+          >
+            <FaChevronLeft className="text-gray-600" />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-50 transition-colors"
+          >
+            <FaChevronRight className="text-gray-600" />
+          </button>
+
+          {/* Scrollable Container */}
+          <div
+            ref={scrollRef}
+            className="overflow-x-auto scrollbar-hide pb-2 mx-10"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex space-x-2 min-w-max">
+              {categories.map(category => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
+                    activeCategory === category.id
+                      ? 'bg-teal-600 text-white'
+                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

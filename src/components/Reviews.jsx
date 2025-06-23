@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft, FaThumbsUp, FaComment, FaShare } from 'react-icons/fa';
+import React, { useState, useRef } from 'react';
+import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft, FaThumbsUp, FaComment, FaShare, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Reviews = () => {
   const [activeCategory, setActiveCategory] = useState('Web Development');
+  const scrollRef = useRef(null);
 
   // Sample review data
   const reviews = [
@@ -182,6 +183,19 @@ const Reviews = () => {
   // Filter reviews based on active category
   const filteredReviews = reviews.filter(review => review.category === activeCategory);
 
+  // Scroll functions for category tabs
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+    }
+  };
+
   // Function to render stars based on rating
   const renderStars = (rating) => {
     const stars = [];
@@ -218,20 +232,43 @@ const Reviews = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="mb-10 overflow-x-auto pb-4">
-          <div className="flex space-x-4 min-w-max">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeCategory === category
-                    ? 'bg-teal-600 text-white shadow-md'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-                  }`}
-              >
-                {category}
-              </button>
-            ))}
+        <div className="mb-10 relative">
+          {/* Left Arrow */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-50 transition-colors"
+          >
+            <FaChevronLeft className="text-gray-600" />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-50 transition-colors"
+          >
+            <FaChevronRight className="text-gray-600" />
+          </button>
+
+          {/* Scrollable Container */}
+          <div
+            ref={scrollRef}
+            className="overflow-x-auto scrollbar-hide pb-4 mx-10"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex space-x-4 min-w-max">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${activeCategory === category
+                      ? 'bg-teal-600 text-white shadow-md'
+                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
