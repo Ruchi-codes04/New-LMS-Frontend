@@ -345,17 +345,34 @@ const AllCourses = () => {
     { id: 'it', name: 'IT & Software' }
   ];
 
+  // Enhanced search function
+  const matchesSearch = (course) => {
+    if (!searchQuery.trim()) return true;
+
+    const query = searchQuery.toLowerCase().trim();
+    const searchFields = [
+      course.title,
+      course.description,
+      course.instructor,
+      course.level,
+      course.category
+    ];
+
+    return searchFields.some(field =>
+      field && field.toLowerCase().includes(query)
+    );
+  };
+
   // Filter courses based on active category, search query, and filters
   const filteredCourses = courses.filter(course => {
     const matchesCategory = activeCategory === 'all' || course.category === activeCategory;
-    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          course.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearchQuery = matchesSearch(course);
     const matchesPrice = matchesPriceFilter(course);
     const matchesLevel = matchesLevelFilter(course);
     const matchesDuration = matchesDurationFilter(course);
     const matchesRating = matchesRatingFilter(course);
 
-    return matchesCategory && matchesSearch && matchesPrice && matchesLevel && matchesDuration && matchesRating;
+    return matchesCategory && matchesSearchQuery && matchesPrice && matchesLevel && matchesDuration && matchesRating;
   });
 
   // Pagination logic
@@ -456,12 +473,25 @@ const AllCourses = () => {
             <div className="max-w-2xl mx-auto relative">
               <input
                 type="text"
-                placeholder="Search for courses..."
+                placeholder="Search for courses, instructors, or topics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-5 py-4 pr-12 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-teal-500 text-gray-700"
+                className="w-full px-5 py-4 pr-12 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-teal-500 text-gray-700 transition-all duration-300"
               />
-              <FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center">
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="mr-2 p-1 hover:bg-gray-200 rounded-full transition-colors duration-200"
+                    title="Clear search"
+                  >
+                    <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+                <FaSearch className={`text-gray-400 transition-colors duration-300 ${searchQuery ? 'text-teal-500' : ''}`} />
+              </div>
             </div>
           </div>
         </div>
@@ -494,7 +524,7 @@ const AllCourses = () => {
       {/* Trending Courses Section */}
       <TrendingCourses />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
         {/* Category Tabs */}
         <div className="mb-8 overflow-x-auto pb-2">
           <div className="flex space-x-2 min-w-max">
@@ -823,15 +853,33 @@ const AllCourses = () => {
           
           {/* Course Grid */}
           <div className="flex-1" id="course-grid">
-            <div className="mb-6 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">
-                {filteredCourses.length} {filteredCourses.length === 1 ? 'course' : 'courses'} available
-                {totalPages > 1 && (
-                  <span className="text-sm font-normal text-gray-600 ml-2">
-                    (Page {currentPage} of {totalPages})
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-2">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {filteredCourses.length} {filteredCourses.length === 1 ? 'course' : 'courses'} available
+                  {totalPages > 1 && (
+                    <span className="text-sm font-normal text-gray-600 ml-2">
+                      (Page {currentPage} of {totalPages})
+                    </span>
+                  )}
+                </h2>
+              </div>
+
+              {/* Search Results Indicator */}
+              {searchQuery && (
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <span>Search results for:</span>
+                  <span className="bg-teal-100 text-teal-800 px-2 py-1 rounded-md font-medium">
+                    "{searchQuery}"
                   </span>
-                )}
-              </h2>
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="text-teal-600 hover:text-teal-700 font-medium"
+                  >
+                    Clear search
+                  </button>
+                </div>
+              )}
               <div className="hidden md:block">
                 
               </div>
@@ -898,8 +946,36 @@ const AllCourses = () => {
               </div>
             ) : (
               <div className="bg-white p-8 rounded-lg text-center">
-                <h3 className="text-xl font-medium text-gray-900 mb-2">No courses found</h3>
-                <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+                <div className="max-w-md mx-auto">
+                  <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                    {searchQuery ? `No results found for "${searchQuery}"` : 'No courses found'}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {searchQuery
+                      ? 'Try searching with different keywords or check your spelling'
+                      : 'Try adjusting your filter criteria'
+                    }
+                  </p>
+                  {searchQuery && (
+                    <div className="space-y-2">
+                      <p className="text-sm text-gray-500">Suggestions:</p>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        {['React', 'JavaScript', 'Python', 'Data Science', 'Web Development'].map(suggestion => (
+                          <button
+                            key={suggestion}
+                            onClick={() => setSearchQuery(suggestion)}
+                            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200 transition-colors"
+                          >
+                            {suggestion}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
             

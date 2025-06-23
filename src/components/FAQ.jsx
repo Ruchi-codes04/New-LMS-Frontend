@@ -63,7 +63,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-20">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-left mb-12 text-gray-900">
           Frequently Asked <span className="text-teal-600">Questions</span>
