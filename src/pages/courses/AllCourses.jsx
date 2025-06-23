@@ -364,7 +364,23 @@ const AllCourses = () => {
   // Pagination handlers
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to the course grid section
+    setTimeout(() => {
+      const courseGrid = document.getElementById('course-grid');
+      if (courseGrid) {
+        const yOffset = -100; // Offset to account for header
+        const y = courseGrid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        // Fallback to scrolling to courses section
+        const coursesSection = document.querySelector('.courses-section');
+        if (coursesSection) {
+          coursesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    }, 100); // Small delay to ensure DOM is updated
   };
 
   const handlePrevious = () => {
@@ -628,7 +644,7 @@ const AllCourses = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row courses-section">
           {/* Sidebar Filters (Desktop) */}
           <div className="hidden md:block w-64 flex-shrink-0 mr-8">
             <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm sticky top-24">
@@ -776,7 +792,7 @@ const AllCourses = () => {
           </div>
           
           {/* Course Grid */}
-          <div className="flex-1">
+          <div className="flex-1" id="course-grid">
             <div className="mb-6 flex justify-between items-center">
               <h2 className="text-xl font-bold text-gray-900">
                 {filteredCourses.length} {filteredCourses.length === 1 ? 'course' : 'courses'} available
