@@ -1,7 +1,41 @@
-import React from 'react';
-import { FaBuilding, FaUsers, FaChalkboardTeacher, FaLaptop, FaCertificate, FaChartLine, FaCheck, FaEnvelope, FaPhone } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaBuilding, FaUsers, FaChalkboardTeacher, FaLaptop, FaCertificate, FaChartLine, FaCheck, FaEnvelope, FaPhone, FaRegClock } from 'react-icons/fa';
 
 const CorporateTraining = () => {
+  const [formData, setFormData] = useState({
+    companyName: '',
+    yourName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const [showAllPrograms, setShowAllPrograms] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    alert('Thank you for your interest! We will contact you soon.');
+    // Reset form
+    setFormData({
+      companyName: '',
+      yourName: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+  };
+
   // Sample corporate training programs
   const trainingPrograms = [
     {
@@ -103,10 +137,24 @@ const CorporateTraining = () => {
                 Empower your workforce with customized training programs designed to enhance skills, boost productivity, and drive business growth.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <button className="bg-white text-teal-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors shadow-md">
+                <button
+                  onClick={() => {
+                    document.getElementById('consultation-form').scrollIntoView({
+                      behavior: 'smooth'
+                    });
+                  }}
+                  className="bg-white text-teal-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors shadow-md"
+                >
                   Request a Consultation
                 </button>
-                <button className="bg-transparent text-white border border-white px-6 py-3 rounded-md font-medium hover:bg-teal-800 hover:border-transparent transition-colors">
+                <button
+                  onClick={() => {
+                    document.getElementById('training-programs').scrollIntoView({
+                      behavior: 'smooth'
+                    });
+                  }}
+                  className="bg-transparent text-white border border-white px-6 py-3 rounded-md font-medium hover:bg-teal-800 hover:border-transparent transition-colors"
+                >
                   View Training Catalog
                 </button>
               </div>
@@ -197,7 +245,7 @@ const CorporateTraining = () => {
       </div>
 
       {/* Training Programs Section */}
-      <div className="py-16">
+      <div id="training-programs" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Popular Training Programs</h2>
@@ -227,7 +275,14 @@ const CorporateTraining = () => {
                       <FaUsers className="inline mr-1" /> {program.format}
                     </span>
                   </div>
-                  <button className="w-full bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition-colors">
+                  <button
+                    onClick={() => {
+                      document.getElementById('consultation-form').scrollIntoView({
+                        behavior: 'smooth'
+                      });
+                    }}
+                    className="w-full bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition-colors"
+                  >
                     Learn More
                   </button>
                 </div>
@@ -236,10 +291,114 @@ const CorporateTraining = () => {
           </div>
           
           <div className="text-center mt-10">
-            <button className="bg-white border border-teal-600 text-teal-600 px-6 py-3 rounded-md font-medium hover:bg-teal-50 transition-colors">
-              View All Training Programs
+            <button
+              onClick={() => setShowAllPrograms(!showAllPrograms)}
+              className="bg-white border border-teal-600 text-teal-600 px-6 py-3 rounded-md font-medium hover:bg-teal-50 transition-colors"
+            >
+              {showAllPrograms ? 'Show Less Programs' : 'View All Training Programs'}
             </button>
           </div>
+
+          {/* Additional Programs */}
+          {showAllPrograms && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+              <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Project Management"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-bold text-gray-900 text-xl mb-2">Project Management Excellence</h3>
+                  <p className="text-gray-600 mb-4">Master project management methodologies including Agile, Scrum, and traditional approaches.</p>
+                  <div className="flex items-center text-sm text-gray-500 mb-4">
+                    <span className="mr-4">
+                      <FaRegClock className="inline mr-1" /> 3-5 days
+                    </span>
+                    <span>
+                      <FaUsers className="inline mr-1" /> In-person/Virtual
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      document.getElementById('consultation-form').scrollIntoView({
+                        behavior: 'smooth'
+                      });
+                    }}
+                    className="w-full bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition-colors"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Sales Training"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-bold text-gray-900 text-xl mb-2">Advanced Sales Training</h3>
+                  <p className="text-gray-600 mb-4">Enhance your sales team's performance with proven techniques and strategies.</p>
+                  <div className="flex items-center text-sm text-gray-500 mb-4">
+                    <span className="mr-4">
+                      <FaRegClock className="inline mr-1" /> 2-3 days
+                    </span>
+                    <span>
+                      <FaUsers className="inline mr-1" /> In-person
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      document.getElementById('consultation-form').scrollIntoView({
+                        behavior: 'smooth'
+                      });
+                    }}
+                    className="w-full bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition-colors"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Customer Service"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-bold text-gray-900 text-xl mb-2">Customer Service Excellence</h3>
+                  <p className="text-gray-600 mb-4">Deliver exceptional customer experiences and build lasting relationships.</p>
+                  <div className="flex items-center text-sm text-gray-500 mb-4">
+                    <span className="mr-4">
+                      <FaRegClock className="inline mr-1" /> 1-2 days
+                    </span>
+                    <span>
+                      <FaUsers className="inline mr-1" /> Virtual/Hybrid
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      document.getElementById('consultation-form').scrollIntoView({
+                        behavior: 'smooth'
+                      });
+                    }}
+                    className="w-full bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition-colors"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -404,43 +563,62 @@ const CorporateTraining = () => {
               </div>
             </div>
             <div className="lg:w-2/5">
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div id="consultation-form" className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Request a Consultation</h3>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-4">
-                    <input 
-                      type="text" 
-                      placeholder="Company Name" 
+                    <input
+                      type="text"
+                      name="companyName"
+                      placeholder="Company Name"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
                   </div>
                   <div className="mb-4">
-                    <input 
-                      type="text" 
-                      placeholder="Your Name" 
+                    <input
+                      type="text"
+                      name="yourName"
+                      placeholder="Your Name"
+                      value={formData.yourName}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
                   </div>
                   <div className="mb-4">
-                    <input 
-                      type="email" 
-                      placeholder="Email Address" 
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
                   </div>
                   <div className="mb-4">
-                    <input 
-                      type="tel" 
-                      placeholder="Phone Number" 
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
                   </div>
                   <div className="mb-4">
-                    <textarea 
-                      placeholder="Tell us about your training needs" 
+                    <textarea
+                      name="message"
+                      placeholder="Tell us about your training needs"
                       rows="3"
+                      value={formData.message}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    ></textarea>
+                    />
                   </div>
                   <button 
                     type="submit"
