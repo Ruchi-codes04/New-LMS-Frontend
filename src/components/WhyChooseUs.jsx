@@ -234,44 +234,7 @@ const WhyChooseUs = () => {
           </div>
         </div>
 
-        {/* Newsletter Section */}
-        <div className="mt-24">
-          <div className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-3xl p-8 lg:p-12">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-              {/* Left Content */}
-              <div className="text-center lg:text-left">
-                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">
-                  Join our Newsletter
-                </h3>
-                <p className="text-teal-100 text-lg">
-                  Subscribe to our Newsletter to get our Latest News
-                </p>
-              </div>
-
-              {/* Right Form */}
-              <div className="w-full lg:w-auto lg:min-w-[480px]">
-                <form onSubmit={handleSubmit} className="flex gap-2">
-                  <div className="flex-1">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email address"
-                      className="w-full px-6 py-4 rounded-full border-1 focus:outline-none focus:ring-2 focus:ring-teal-300 text-white placeholder-gray-400"
-                      required
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="bg-teal-500 hover:bg-teal-400 text-white p-4 rounded-full transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:ring-offset-teal-600"
-                  >
-                    <FaArrowRight className="w-5 h-5" />
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+     
       </div>
     </section>
   );

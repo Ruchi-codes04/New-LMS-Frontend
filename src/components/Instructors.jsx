@@ -34,7 +34,7 @@ const Instructors = () => {
       id: 4,
       name: "Albert Flores",
       role: "Fitness Trainer",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=400&q=80",
+      image: "https://www.upgrad.com/_ww3-next/image/?url=https%3A%2F%2Fd2o2utebsixu4k.cloudfront.net%2F4th%20persona%20(1)-3dcd8428d10845678f2b561213cbd582.webp&w=640&q=75",
       bgColor: "bg-cyan-400",
       courses: "78",
       students: "1.2k"

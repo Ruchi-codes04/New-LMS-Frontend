@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft, FaThumbsUp, FaComment, FaShare, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft, FaThumbsUp, FaComment, FaShare, FaChevronLeft, FaChevronRight, FaArrowRight } from 'react-icons/fa';
 
 const Reviews = () => {
   const [activeCategory, setActiveCategory] = useState('Web Development');
+  const [email, setEmail] = useState('');
   const scrollRef = useRef(null);
 
   // Sample review data
@@ -196,6 +197,15 @@ const Reviews = () => {
     }
   };
 
+  // Handle newsletter form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email) {
+      alert('Thank you for subscribing to our newsletter!');
+      setEmail('');
+    }
+  };
+
   // Function to render stars based on rating
   const renderStars = (rating) => {
     const stars = [];
@@ -236,7 +246,7 @@ const Reviews = () => {
           {/* Left Arrow */}
           <button
             onClick={scrollLeft}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-50 transition-colors"
+            className="absolute left-0 top-4 transform -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-50 transition-colors"
           >
             <FaChevronLeft className="text-gray-600" />
           </button>
@@ -244,7 +254,7 @@ const Reviews = () => {
           {/* Right Arrow */}
           <button
             onClick={scrollRight}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-50 transition-colors"
+            className="absolute right-0 top-4 transform -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 hover:bg-gray-50 transition-colors"
           >
             <FaChevronRight className="text-gray-600" />
           </button>
@@ -356,8 +366,50 @@ const Reviews = () => {
             Write a Review
           </button>
         </div>
+
+        {/* Newsletter Section */}
+        <div className="mt-24">
+          <div className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-3xl p-8 lg:p-12">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+              {/* Left Content */}
+              <div className="text-center lg:text-left">
+                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">
+                  Join our Newsletter
+                </h3>
+                <p className="text-teal-100 text-lg">
+                  Subscribe to our Newsletter to get our Latest News
+                </p>
+              </div>
+
+              {/* Right Form */}
+              <div className="w-full lg:w-auto lg:min-w-[480px]">
+                <form onSubmit={handleSubmit} className="flex gap-2">
+                  <div className="flex-1">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email address"
+                      className="w-full px-6 py-4 rounded-full border-0 focus:outline-none focus:ring-2 focus:ring-teal-300 text-gray-900 placeholder-gray-500 bg-white"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="bg-teal-500 hover:bg-teal-400 text-white p-4 rounded-full transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:ring-offset-teal-600"
+                  >
+                    <FaArrowRight className="w-5 h-5" />
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
+
+    
   );
 };
 

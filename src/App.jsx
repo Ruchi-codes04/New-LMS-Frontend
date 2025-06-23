@@ -36,7 +36,6 @@ import {
   AboutBrainBridge,
   OurAffiliation,
   OurCustomers,
-
   PlacementPartners,
   ContactUs
 } from './pages/about'
@@ -69,7 +68,6 @@ const Home = () => {
         <WhyChooseUs />
         <Testimonials />
         <Instructors />
-
         <Reviews />
       </div>
     </>
