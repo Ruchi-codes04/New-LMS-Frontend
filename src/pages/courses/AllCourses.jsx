@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FaSearch, FaFilter, FaStar, FaRegClock, FaUserGraduate, FaChevronDown } from 'react-icons/fa';
 import TrendingCourses from '../../components/TrendingCourses';
+import MicrosoftAI from '../../components/MicrosoftAI';
+import FAQ from '../../components/FAQ';
 
 const AllCourses = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -954,6 +956,12 @@ const AllCourses = () => {
           </div>
         </div>
       </div>
+
+      {/* Microsoft AI Section */}
+      <MicrosoftAI />
+
+      {/* FAQ Section */}
+      <FAQ />
     </div>
   );
 };
