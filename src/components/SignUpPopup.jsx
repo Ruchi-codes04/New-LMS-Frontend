@@ -4,9 +4,20 @@ import { useSignUp } from '../contexts/SignUpContext';
 
 const SignUpPopup = () => {
   const { isPopupVisible, hideSignUpPopup, showSignUpPopup } = useSignUp();
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
+  const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [showEmailForm, setShowEmailForm] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    dateOfBirth: '',
+    gender: '',
+    course: '',
+    experience: '',
+    password: '',
+    confirmPassword: ''
+  });
 
   useEffect(() => {
     // Show popup every 15 seconds
@@ -27,27 +38,61 @@ const SignUpPopup = () => {
 
   const handleClose = () => {
     hideSignUpPopup();
+    setShowSignUpForm(false);
+    setShowEmailForm(false);
   };
 
-  const handlePhoneSubmit = (e) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSignUpSubmit = (e) => {
     e.preventDefault();
-    if (phoneNumber.length >= 10) {
-      // Handle phone number submission
-      console.log('Phone number submitted:', phoneNumber);
-      alert('Thank you for signing up! We will contact you soon.');
-      hideSignUpPopup();
-      setPhoneNumber('');
+
+    // Basic validation
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match!');
+      return;
     }
+
+    if (formData.password.length < 6) {
+      alert('Password must be at least 6 characters long!');
+      return;
+    }
+
+    // Handle sign up submission
+    console.log('Sign up data submitted:', formData);
+    alert('Thank you for signing up! Welcome to our learning platform!');
+    hideSignUpPopup();
+
+    // Reset form
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+      dateOfBirth: '',
+      gender: '',
+      course: '',
+      experience: '',
+      password: '',
+      confirmPassword: ''
+    });
+    setShowSignUpForm(false);
   };
 
   const handleEmailSubmit = (e) => {
     e.preventDefault();
-    if (email) {
+    if (formData.email) {
       // Handle email submission
-      console.log('Email submitted:', email);
+      console.log('Email submitted:', formData.email);
       alert('Thank you for signing up! Check your email for confirmation.');
       hideSignUpPopup();
-      setEmail('');
+      setFormData(prev => ({ ...prev, email: '' }));
       setShowEmailForm(false);
     }
   };
@@ -55,7 +100,7 @@ const SignUpPopup = () => {
   if (!isPopupVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-white flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative">
         {/* Close Button */}
         <button
@@ -140,50 +185,185 @@ const SignUpPopup = () => {
               </p>
             </div>
 
-            {!showEmailForm ? (
-              <form onSubmit={handlePhoneSubmit} className="space-y-6">
+            {!showEmailForm && !showSignUpForm ? (
+              <div className="space-y-6">
+                <button
+                  onClick={() => setShowSignUpForm(true)}
+                  className="w-full bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
+                >
+                  Sign Up
+                </button>
+              </div>
+            ) : showSignUpForm ? (
+              <form onSubmit={handleSignUpSubmit} className="space-y-4 max-h-96 overflow-y-auto">
+                <div className="grid grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  required
+                />
+
                 <div className="flex">
                   <div className="flex items-center bg-gray-50 border border-gray-300 rounded-l-lg px-3">
-                    <img 
-                      src="https://flagcdn.com/w20/in.png" 
-                      alt="India" 
+                    <img
+                      src="https://flagcdn.com/w20/in.png"
+                      alt="India"
                       className="w-5 h-3 mr-2"
                     />
                     <span className="text-gray-700 font-medium">+91</span>
                   </div>
                   <input
                     type="tel"
+                    name="phoneNumber"
                     placeholder="Phone Number"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="flex-1 px-4 py-3 border border-l-0 border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
+                    className="flex-1 px-4 py-2 border border-l-0 border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     required
                   />
                 </div>
-                
+
+                <div className="grid grid-cols-2 gap-4">
+                  <input
+                    type="date"
+                    name="dateOfBirth"
+                    placeholder="Date of Birth"
+                    value={formData.dateOfBirth}
+                    onChange={handleInputChange}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    required
+                  />
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleInputChange}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    required
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <select
+                  name="course"
+                  value={formData.course}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  required
+                >
+                  <option value="">Select Course Interest</option>
+                  <option value="web-development">Web Development</option>
+                  <option value="data-science">Data Science</option>
+                  <option value="mobile-development">Mobile Development</option>
+                  <option value="ai-ml">AI & Machine Learning</option>
+                  <option value="cybersecurity">Cybersecurity</option>
+                  <option value="cloud-computing">Cloud Computing</option>
+                  <option value="digital-marketing">Digital Marketing</option>
+                </select>
+
+                <select
+                  name="experience"
+                  value={formData.experience}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  required
+                >
+                  <option value="">Experience Level</option>
+                  <option value="beginner">Beginner (0-1 years)</option>
+                  <option value="intermediate">Intermediate (1-3 years)</option>
+                  <option value="advanced">Advanced (3-5 years)</option>
+                  <option value="expert">Expert (5+ years)</option>
+                </select>
+
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  required
+                  minLength="6"
+                />
+
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  required
+                  minLength="6"
+                />
+
                 <button
                   type="submit"
                   className="w-full bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
                 >
-                  Continue with Phone
+                  Create Account
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowSignUpForm(false)}
+                  className="w-full text-gray-600 py-2 text-sm hover:text-gray-800 transition-colors"
+                >
+                  ← Back to options
                 </button>
               </form>
             ) : (
               <form onSubmit={handleEmailSubmit} className="space-y-6">
                 <input
                   type="email"
+                  name="email"
                   placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                   required
                 />
-                
+
                 <button
                   type="submit"
                   className="w-full bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
                 >
                   Continue with Email
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowEmailForm(false)}
+                  className="w-full text-gray-600 py-2 text-sm hover:text-gray-800 transition-colors"
+                >
+                  ← Back to options
                 </button>
               </form>
             )}
@@ -192,12 +372,14 @@ const SignUpPopup = () => {
               <span className="text-gray-500">or</span>
             </div>
 
-            <button
-              onClick={() => setShowEmailForm(!showEmailForm)}
-              className="w-full text-gray-700 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors underline"
-            >
-              {showEmailForm ? 'Continue with Phone' : 'Continue with Email'}
-            </button>
+            {!showSignUpForm && (
+              <button
+                onClick={() => setShowEmailForm(!showEmailForm)}
+                className="w-full text-gray-700 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors underline"
+              >
+                {showEmailForm ? 'Back to Sign Up' : 'Continue with Email'}
+              </button>
+            )}
 
             <div className="mt-8 text-center">
               <p className="text-xs text-gray-500">
