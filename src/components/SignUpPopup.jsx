@@ -28,7 +28,7 @@ const SignUpPopup = () => {
     // Show popup for the first time after 15 seconds
     const initialTimeout = setTimeout(() => {
       showSignUpPopup();
-    }, 15000);
+    }, 50000);
 
     return () => {
       clearInterval(interval);
@@ -100,7 +100,7 @@ const SignUpPopup = () => {
   if (!isPopupVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-white flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative">
         {/* Close Button */}
         <button
