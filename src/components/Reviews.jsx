@@ -181,8 +181,8 @@ const Reviews = () => {
   ];
 
   // Filter reviews based on active category
-  const filteredReviews = activeCategory === 'All' 
-    ? reviews 
+  const filteredReviews = activeCategory === 'All'
+    ? reviews
     : reviews.filter(review => review.category === activeCategory);
 
   // Function to render stars based on rating
@@ -190,7 +190,7 @@ const Reviews = () => {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-    
+
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
         stars.push(<FaStar key={i} className="text-yellow-400" />);
@@ -200,7 +200,7 @@ const Reviews = () => {
         stars.push(<FaRegStar key={i} className="text-yellow-400" />);
       }
     }
-    
+
     return stars;
   };
 
@@ -227,11 +227,10 @@ const Reviews = () => {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeCategory === category
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeCategory === category
                     ? 'bg-teal-600 text-white shadow-md'
                     : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-                }`}
+                  }`}
               >
                 {category}
               </button>
@@ -261,14 +260,14 @@ const Reviews = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Course Name */}
                 <div className="mb-3">
                   <h5 className="font-medium text-gray-800">
                     Course: {review.course}
                   </h5>
                 </div>
-                
+
                 {/* Rating */}
                 <div className="flex items-center mb-4">
                   <div className="flex mr-2">
@@ -278,7 +277,7 @@ const Reviews = () => {
                     {review.rating.toFixed(1)}
                   </span>
                 </div>
-                
+
                 {/* Review Content */}
                 <div className="mb-6">
                   <div className="text-gray-500 mb-2">
@@ -288,7 +287,7 @@ const Reviews = () => {
                     {review.comment}
                   </p>
                 </div>
-                
+
                 {/* Review Footer */}
                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                   <div className="flex items-center space-x-4">
@@ -310,7 +309,7 @@ const Reviews = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">

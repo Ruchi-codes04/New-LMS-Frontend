@@ -27,7 +27,7 @@ import {
   YoutubeReviews,
   LearnerReviewsComplaints,
   MediumReviews
-} from './pages/reviews'
+} from "./pages/reviews";
 
 // Home page component
 const Home = () => {
@@ -56,7 +56,7 @@ function App() {
         <Routes>
           {/* Home Route */}
           <Route path="/" element={<Home />} />
-          
+
           {/* Review Routes */}
           <Route path="/reviews/participant" element={<ParticipantReviews />} />
           <Route path="/reviews/video" element={<VideoReviews />} />
@@ -70,7 +70,7 @@ function App() {
           <Route path="/reviews/youtube" element={<YoutubeReviews />} />
           <Route path="/reviews/complaints" element={<LearnerReviewsComplaints />} />
           <Route path="/reviews/medium" element={<MediumReviews />} />
-          
+
           {/* 404 Route - must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>
