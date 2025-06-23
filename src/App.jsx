@@ -96,10 +96,7 @@ function App() {
           <Route path="/reviews/youtube" element={<YoutubeReviews />} />
           <Route path="/reviews/complaints" element={<LearnerReviewsComplaints />} />
           <Route path="/reviews/medium" element={<MediumReviews />} />
-<<<<<<< HEAD
 
-=======
-          
           {/* About Us Routes */}
           <Route path="/about/company" element={<AboutBrainBridge />} />
           <Route path="/about/team" element={<OurAffiliation />} />
@@ -107,7 +104,7 @@ function App() {
           <Route path="/about/careers" element={<OurBlogs />} />
           <Route path="/about/testimonials" element={<PlacementPartners />} />
           <Route path="/about/contact" element={<ContactUs />} />
-          
+
           {/* Student Routes */}
           <Route path="/students/CustomerSupport" element={<CustomerSupport />} />
           <Route path="/students/Events" element={<Events />} />
@@ -115,12 +112,10 @@ function App() {
           <Route path="/students/resources" element={<CareerSupport />} />
           <Route path="/students/support" element={<Certification />} />
           <Route path="/students/profile" element={<SubmitFeedback />} />
-          
+
           {/* Course Routes */}
           <Route path="/courses/all" element={<AllCourses />} />
           <Route path="/corporate-training" element={<CorporateTraining />} />
-          
->>>>>>> 0496c76c8c5aceb80cf73850a6cfc0f221cf311c
           {/* 404 Route - must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>

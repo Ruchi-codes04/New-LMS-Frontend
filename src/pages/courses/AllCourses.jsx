@@ -715,13 +715,7 @@ const AllCourses = () => {
                 {filteredCourses.length} {filteredCourses.length === 1 ? 'course' : 'courses'} available
               </h2>
               <div className="hidden md:block">
-                <select className="border border-gray-300 rounded-md py-2 px-4 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
-                  <option>Most Popular</option>
-                  <option>Highest Rated</option>
-                  <option>Newest</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                </select>
+                
               </div>
             </div>
             
