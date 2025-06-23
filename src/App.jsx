@@ -54,7 +54,7 @@ import {
 import {
   AllCourses,
   CorporateTraining
-} from './pages/courses'
+} from './pages/Courses'
 
 // Home page component
 const Home = () => {
