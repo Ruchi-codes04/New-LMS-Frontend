@@ -110,12 +110,12 @@ function App() {
           <Route path="/about/contact" element={<ContactUs />} />
 
           {/* Student Routes */}
-          <Route path="/students/CustomerSupport" element={<CustomerSupport />} />
-          <Route path="/students/Events" element={<Events />} />
-          <Route path="/students/InternshipSupport" element={<InternshipSupport />} />
-          <Route path="/students/resources" element={<CareerSupport />} />
-          <Route path="/students/support" element={<Certification />} />
-          <Route path="/students/profile" element={<SubmitFeedback />} />
+          <Route path="/students/customer-support" element={<CustomerSupport />} />
+          <Route path="/students/events" element={<Events />} />
+          <Route path="/students/internship-support" element={<InternshipSupport />} />
+          <Route path="/students/career-support" element={<CareerSupport />} />
+          <Route path="/students/certification" element={<Certification />} />
+          <Route path="/students/submit-feedback" element={<SubmitFeedback />} />
 
           {/* Course Routes */}
           <Route path="/courses/all" element={<AllCourses />} />

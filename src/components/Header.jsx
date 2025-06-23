@@ -77,12 +77,12 @@ const Header = () => {
               </button>
               <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 <div className="py-1" role="menu" aria-orientation="vertical">
-                  <Link to="/students/CustomerSupport" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Customer Support</Link>
-                  <Link to="/students/Events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Events</Link>
-                  <Link to="/students/InternshipSupport" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Internship Support</Link>
-                  <Link to="/students/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Career Support</Link>
-                  <Link to="/students/support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Certification</Link>
-                  <Link to="/students/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Submit Feedback</Link>
+                  <Link to="/students/customer-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Customer Support</Link>
+                  <Link to="/students/events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Events</Link>
+                  <Link to="/students/internship-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Internship Support</Link>
+                  <Link to="/students/career-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Career Support</Link>
+                  <Link to="/students/certification" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Certification</Link>
+                  <Link to="/students/submit-feedback" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Submit Feedback</Link>
                 </div>
               </div>
             </div>
@@ -207,12 +207,12 @@ const Header = () => {
                   <FaChevronDown className="w-2 h-2" />
                 </button>
                 <div className="hidden mt-2 ml-4 border-l-2 border-gray-200 pl-4">
-                  <Link to="/students/CustomerSupport" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Customer Support</Link>
-                  <Link to="/students/Events" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Events</Link>
-                  <Link to="/students/InternshipSupport" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Internship Support</Link>
-                  <Link to="/students/resources" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Career Support</Link>
-                  <Link to="/students/support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Certification</Link>
-                  <Link to="/students/profile" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Submit Feedback</Link>
+                  <Link to="/students/customer-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Customer Support</Link>
+                  <Link to="/students/events" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Events</Link>
+                  <Link to="/students/internship-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Internship Support</Link>
+                  <Link to="/students/career-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Career Support</Link>
+                  <Link to="/students/certification" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Certification</Link>
+                  <Link to="/students/submit-feedback" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Submit Feedback</Link>
                 </div>
               </li>
               <li className="relative">
