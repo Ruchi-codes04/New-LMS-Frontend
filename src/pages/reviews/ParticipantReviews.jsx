@@ -1,10 +1,10 @@
 import React from 'react';
-import ReviewTemplate from './ReviewTemplate';
+import ReviewsLayout from '../../components/ReviewsLayout';
 
 const ParticipantReviews = () => {
   return (
-    <ReviewTemplate 
-      category="Participant Reviews" 
+    <ReviewsLayout
+      title="Participant Reviews"
       description="Read authentic reviews from students who have completed our courses. Discover how our training programs have helped them advance their careers and achieve their learning goals."
     />
   );

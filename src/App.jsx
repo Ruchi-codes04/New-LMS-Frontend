@@ -27,7 +27,7 @@ import {
   YoutubeReviews,
   LearnerReviewsComplaints,
   MediumReviews
-} from './pages/reviews'
+} from "./pages/reviews";
 
 // Import about pages
 import {
@@ -82,7 +82,7 @@ function App() {
         <Routes>
           {/* Home Route */}
           <Route path="/" element={<Home />} />
-          
+
           {/* Review Routes */}
           <Route path="/reviews/participant" element={<ParticipantReviews />} />
           <Route path="/reviews/video" element={<VideoReviews />} />
@@ -96,6 +96,9 @@ function App() {
           <Route path="/reviews/youtube" element={<YoutubeReviews />} />
           <Route path="/reviews/complaints" element={<LearnerReviewsComplaints />} />
           <Route path="/reviews/medium" element={<MediumReviews />} />
+<<<<<<< HEAD
+
+=======
           
           {/* About Us Routes */}
           <Route path="/about/company" element={<AboutBrainBridge />} />
@@ -117,6 +120,7 @@ function App() {
           <Route path="/courses/all" element={<AllCourses />} />
           <Route path="/corporate-training" element={<CorporateTraining />} />
           
+>>>>>>> 0496c76c8c5aceb80cf73850a6cfc0f221cf311c
           {/* 404 Route - must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>
