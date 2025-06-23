@@ -180,9 +180,6 @@ const SignUpPopup = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
                 Welcome! Sign up or Login
               </h2>
-              <p className="text-gray-600">
-                Join thousands of learners advancing their careers
-              </p>
             </div>
 
             {!showEmailForm && !showSignUpForm ? (
