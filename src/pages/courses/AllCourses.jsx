@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FaSearch, FaFilter, FaStar, FaRegClock, FaUserGraduate, FaChevronDown } from 'react-icons/fa';
 import TrendingCourses from '../../components/TrendingCourses';
 import MicrosoftAI from '../../components/MicrosoftAI';
@@ -1038,6 +1039,52 @@ const AllCourses = () => {
 
       {/* FAQ Section */}
       <FAQ />
+
+      {/* Corporate Training CTA */}
+      <section className="py-16 bg-gradient-to-r from-teal-600 to-teal-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Looking for Corporate Training Solutions?
+            </h2>
+            <p className="text-teal-100 text-lg mb-8 max-w-3xl mx-auto">
+              Transform your workforce with our customized corporate training programs.
+              We offer tailored solutions for organizations of all sizes across various industries.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/corporate-training"
+                className="bg-white text-teal-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                Explore Corporate Training
+              </Link>
+              <button
+                onClick={() => {
+                  // Navigate to corporate training and scroll to consultation form
+                  window.location.href = '/corporate-training#consultation-form';
+                }}
+                className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-teal-700 transition-colors"
+              >
+                Request Consultation
+              </button>
+            </div>
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
+              <div className="text-center">
+                <div className="text-2xl font-bold mb-1">500+</div>
+                <div className="text-teal-100">Companies Trained</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold mb-1">50+</div>
+                <div className="text-teal-100">Training Programs</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold mb-1">98%</div>
+                <div className="text-teal-100">Satisfaction Rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
