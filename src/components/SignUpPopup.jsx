@@ -23,7 +23,7 @@ const SignUpPopup = () => {
     // Show popup every 15 seconds
     const interval = setInterval(() => {
       showSignUpPopup();
-    }, 15000);
+    }, 50000);
 
     // Show popup for the first time after 15 seconds
     const initialTimeout = setTimeout(() => {

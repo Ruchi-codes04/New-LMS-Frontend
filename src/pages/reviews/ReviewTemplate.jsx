@@ -4,7 +4,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft, FaThumbsUp, FaComment, F
 
 const ReviewTemplate = ({ category, description, source, externalLink }) => {
   const [sortBy, setSortBy] = useState('newest');
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState('participant');
 
   // Sample review data
   const allReviews = [
@@ -192,7 +192,6 @@ const ReviewTemplate = ({ category, description, source, externalLink }) => {
 
   // Filter reviews based on the category and filter type
   const filteredReviews = allReviews.filter(review => {
-    if (filter === 'all') return true;
     return review.type === filter;
   });
 
@@ -451,16 +450,7 @@ const ReviewTemplate = ({ category, description, source, externalLink }) => {
             <div className="col-span-1">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Filter Reviews</h3>
               <div className="space-y-3">
-                <button 
-                  onClick={() => setFilter('all')}
-                  className={`w-full text-left px-4 py-2 rounded-md transition-colors ${
-                    filter === 'all' 
-                      ? 'bg-teal-600 text-white' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  All Reviews
-                </button>
+
                 <button 
                   onClick={() => setFilter('participant')}
                   className={`w-full text-left px-4 py-2 rounded-md transition-colors ${

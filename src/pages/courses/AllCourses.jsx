@@ -6,7 +6,7 @@ import MicrosoftAI from '../../components/MicrosoftAI';
 import FAQ from '../../components/FAQ';
 
 const AllCourses = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('development');
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -337,7 +337,6 @@ const AllCourses = () => {
 
   // Categories for filter
   const categories = [
-    { id: 'all', name: 'All Courses' },
     { id: 'development', name: 'Development' },
     { id: 'data-science', name: 'Data Science' },
     { id: 'design', name: 'Design' },
@@ -366,7 +365,7 @@ const AllCourses = () => {
 
   // Filter courses based on active category, search query, and filters
   const filteredCourses = courses.filter(course => {
-    const matchesCategory = activeCategory === 'all' || course.category === activeCategory;
+    const matchesCategory = course.category === activeCategory;
     const matchesSearchQuery = matchesSearch(course);
     const matchesPrice = matchesPriceFilter(course);
     const matchesLevel = matchesLevelFilter(course);

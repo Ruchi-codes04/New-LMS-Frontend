@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft, FaThumbsUp, FaComment, FaShare } from 'react-icons/fa';
 
 const Reviews = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState('Web Development');
 
   // Sample review data
   const reviews = [
@@ -166,7 +166,6 @@ const Reviews = () => {
 
   // Categories for filtering
   const categories = [
-    'All',
     'Web Development',
     'Data Science',
     'Design',
@@ -181,9 +180,7 @@ const Reviews = () => {
   ];
 
   // Filter reviews based on active category
-  const filteredReviews = activeCategory === 'All'
-    ? reviews
-    : reviews.filter(review => review.category === activeCategory);
+  const filteredReviews = reviews.filter(review => review.category === activeCategory);
 
   // Function to render stars based on rating
   const renderStars = (rating) => {
