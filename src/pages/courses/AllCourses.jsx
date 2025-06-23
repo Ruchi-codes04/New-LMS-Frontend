@@ -5,7 +5,116 @@ const AllCourses = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+
+  // Filter states
+  const [filters, setFilters] = useState({
+    price: {
+      free: false,
+      paid: false
+    },
+    level: {
+      beginner: false,
+      intermediate: false,
+      advanced: false
+    },
+    duration: {
+      short: false,    // 0-10 hours
+      medium: false,   // 10-20 hours
+      long: false      // 20+ hours
+    },
+    rating: {
+      high: false,     // 4.5 & up
+      good: false,     // 4.0 & up
+      average: false   // 3.5 & up
+    }
+  });
   
+  // Helper function to handle filter changes
+  const handleFilterChange = (category, filterKey) => {
+    setFilters(prev => ({
+      ...prev,
+      [category]: {
+        ...prev[category],
+        [filterKey]: !prev[category][filterKey]
+      }
+    }));
+  };
+
+  // Helper function to clear all filters
+  const clearAllFilters = () => {
+    setFilters({
+      price: {
+        free: false,
+        paid: false
+      },
+      level: {
+        beginner: false,
+        intermediate: false,
+        advanced: false
+      },
+      duration: {
+        short: false,
+        medium: false,
+        long: false
+      },
+      rating: {
+        high: false,
+        good: false,
+        average: false
+      }
+    });
+  };
+
+  // Helper function to check if course matches price filter
+  const matchesPriceFilter = (course) => {
+    const { free, paid } = filters.price;
+    if (!free && !paid) return true; // No filter selected
+
+    const isFree = course.price === 'Free' || course.price === '₹0';
+    const isPaid = course.price !== 'Free' && course.price !== '₹0';
+
+    return (free && isFree) || (paid && isPaid);
+  };
+
+  // Helper function to check if course matches level filter
+  const matchesLevelFilter = (course) => {
+    const { beginner, intermediate, advanced } = filters.level;
+    if (!beginner && !intermediate && !advanced) return true; // No filter selected
+
+    const level = course.level.toLowerCase();
+    return (
+      (beginner && level.includes('beginner')) ||
+      (intermediate && level.includes('intermediate')) ||
+      (advanced && level.includes('advanced'))
+    );
+  };
+
+  // Helper function to check if course matches duration filter
+  const matchesDurationFilter = (course) => {
+    const { short, medium, long } = filters.duration;
+    if (!short && !medium && !long) return true; // No filter selected
+
+    const duration = parseInt(course.duration);
+    return (
+      (short && duration <= 10) ||
+      (medium && duration > 10 && duration <= 20) ||
+      (long && duration > 20)
+    );
+  };
+
+  // Helper function to check if course matches rating filter
+  const matchesRatingFilter = (course) => {
+    const { high, good, average } = filters.rating;
+    if (!high && !good && !average) return true; // No filter selected
+
+    const rating = course.rating;
+    return (
+      (high && rating >= 4.5) ||
+      (good && rating >= 4.0) ||
+      (average && rating >= 3.5)
+    );
+  };
+
   // Sample course data
   const courses = [
     {
@@ -187,6 +296,36 @@ const AllCourses = () => {
       price: "₹12,999",
       originalPrice: "₹18,999",
       image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      id: 13,
+      title: "Introduction to Programming",
+      description: "Learn the basics of programming with this free introductory course covering fundamental concepts.",
+      instructor: "John Smith",
+      rating: 4.2,
+      reviews: 324,
+      students: 2100,
+      duration: "8 hours",
+      level: "Beginner",
+      category: "development",
+      price: "Free",
+      originalPrice: "Free",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      id: 14,
+      title: "Basic HTML & CSS",
+      description: "Free course covering HTML and CSS fundamentals for web development beginners.",
+      instructor: "Jane Doe",
+      rating: 4.0,
+      reviews: 156,
+      students: 1800,
+      duration: "6 hours",
+      level: "Beginner",
+      category: "development",
+      price: "Free",
+      originalPrice: "Free",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
     }
   ];
 
@@ -201,12 +340,17 @@ const AllCourses = () => {
     { id: 'it', name: 'IT & Software' }
   ];
 
-  // Filter courses based on active category and search query
+  // Filter courses based on active category, search query, and filters
   const filteredCourses = courses.filter(course => {
     const matchesCategory = activeCategory === 'all' || course.category === activeCategory;
-    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           course.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    const matchesPrice = matchesPriceFilter(course);
+    const matchesLevel = matchesLevelFilter(course);
+    const matchesDuration = matchesDurationFilter(course);
+    const matchesRating = matchesRatingFilter(course);
+
+    return matchesCategory && matchesSearch && matchesPrice && matchesLevel && matchesDuration && matchesRating;
   });
 
   return (
@@ -273,54 +417,141 @@ const AllCourses = () => {
           {/* Mobile Filters */}
           {showFilters && (
             <div className="mt-2 p-4 bg-white border border-gray-200 rounded-md shadow-sm">
-              {/* Filter options would go here */}
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-medium text-gray-900">Filter Options</h3>
+                <button
+                  onClick={clearAllFilters}
+                  className="text-sm text-teal-600 hover:text-teal-700 font-medium"
+                >
+                  Clear All
+                </button>
+              </div>
               <div className="space-y-4">
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">Price</h3>
                   <div className="space-y-2">
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.price.free}
+                        onChange={() => handleFilterChange('price', 'free')}
+                      />
                       <span className="ml-2 text-gray-700">Free</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.price.paid}
+                        onChange={() => handleFilterChange('price', 'paid')}
+                      />
                       <span className="ml-2 text-gray-700">Paid</span>
                     </label>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">Level</h3>
                   <div className="space-y-2">
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.level.beginner}
+                        onChange={() => handleFilterChange('level', 'beginner')}
+                      />
                       <span className="ml-2 text-gray-700">Beginner</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.level.intermediate}
+                        onChange={() => handleFilterChange('level', 'intermediate')}
+                      />
                       <span className="ml-2 text-gray-700">Intermediate</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.level.advanced}
+                        onChange={() => handleFilterChange('level', 'advanced')}
+                      />
                       <span className="ml-2 text-gray-700">Advanced</span>
                     </label>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">Duration</h3>
                   <div className="space-y-2">
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.duration.short}
+                        onChange={() => handleFilterChange('duration', 'short')}
+                      />
                       <span className="ml-2 text-gray-700">0-10 hours</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.duration.medium}
+                        onChange={() => handleFilterChange('duration', 'medium')}
+                      />
                       <span className="ml-2 text-gray-700">10-20 hours</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.duration.long}
+                        onChange={() => handleFilterChange('duration', 'long')}
+                      />
                       <span className="ml-2 text-gray-700">20+ hours</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-2">Rating</h3>
+                  <div className="space-y-2">
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.rating.high}
+                        onChange={() => handleFilterChange('rating', 'high')}
+                      />
+                      <span className="ml-2 text-gray-700 flex items-center">
+                        4.5 & up <FaStar className="text-yellow-400 ml-1" size={12} />
+                      </span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.rating.good}
+                        onChange={() => handleFilterChange('rating', 'good')}
+                      />
+                      <span className="ml-2 text-gray-700 flex items-center">
+                        4.0 & up <FaStar className="text-yellow-400 ml-1" size={12} />
+                      </span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.rating.average}
+                        onChange={() => handleFilterChange('rating', 'average')}
+                      />
+                      <span className="ml-2 text-gray-700 flex items-center">
+                        3.5 & up <FaStar className="text-yellow-400 ml-1" size={12} />
+                      </span>
                     </label>
                   </div>
                 </div>
@@ -334,76 +565,139 @@ const AllCourses = () => {
           {/* Sidebar Filters (Desktop) */}
           <div className="hidden md:block w-64 flex-shrink-0 mr-8">
             <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm sticky top-24">
-              <h2 className="font-bold text-gray-900 mb-4">Filters</h2>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="font-bold text-gray-900">Filters</h2>
+                <button
+                  onClick={clearAllFilters}
+                  className="text-sm text-teal-600 hover:text-teal-700 font-medium"
+                >
+                  Clear All
+                </button>
+              </div>
               
               <div className="space-y-6">
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">Price</h3>
                   <div className="space-y-2">
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.price.free}
+                        onChange={() => handleFilterChange('price', 'free')}
+                      />
                       <span className="ml-2 text-gray-700">Free</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.price.paid}
+                        onChange={() => handleFilterChange('price', 'paid')}
+                      />
                       <span className="ml-2 text-gray-700">Paid</span>
                     </label>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">Level</h3>
                   <div className="space-y-2">
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.level.beginner}
+                        onChange={() => handleFilterChange('level', 'beginner')}
+                      />
                       <span className="ml-2 text-gray-700">Beginner</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.level.intermediate}
+                        onChange={() => handleFilterChange('level', 'intermediate')}
+                      />
                       <span className="ml-2 text-gray-700">Intermediate</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.level.advanced}
+                        onChange={() => handleFilterChange('level', 'advanced')}
+                      />
                       <span className="ml-2 text-gray-700">Advanced</span>
                     </label>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">Duration</h3>
                   <div className="space-y-2">
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.duration.short}
+                        onChange={() => handleFilterChange('duration', 'short')}
+                      />
                       <span className="ml-2 text-gray-700">0-10 hours</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.duration.medium}
+                        onChange={() => handleFilterChange('duration', 'medium')}
+                      />
                       <span className="ml-2 text-gray-700">10-20 hours</span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.duration.long}
+                        onChange={() => handleFilterChange('duration', 'long')}
+                      />
                       <span className="ml-2 text-gray-700">20+ hours</span>
                     </label>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">Rating</h3>
                   <div className="space-y-2">
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.rating.high}
+                        onChange={() => handleFilterChange('rating', 'high')}
+                      />
                       <span className="ml-2 text-gray-700 flex items-center">
                         4.5 & up <FaStar className="text-yellow-400 ml-1" size={12} />
                       </span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.rating.good}
+                        onChange={() => handleFilterChange('rating', 'good')}
+                      />
                       <span className="ml-2 text-gray-700 flex items-center">
                         4.0 & up <FaStar className="text-yellow-400 ml-1" size={12} />
                       </span>
                     </label>
                     <label className="flex items-center">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500" />
+                      <input
+                        type="checkbox"
+                        className="rounded text-teal-600 focus:ring-teal-500"
+                        checked={filters.rating.average}
+                        onChange={() => handleFilterChange('rating', 'average')}
+                      />
                       <span className="ml-2 text-gray-700 flex items-center">
                         3.5 & up <FaStar className="text-yellow-400 ml-1" size={12} />
                       </span>
