@@ -101,19 +101,35 @@ const CollegeTrainingReviews = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationData, setPaginationData] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredReviews, setFilteredReviews] = useState(collegeTrainingReviews);
+
+  // Search function
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+    const filtered = collegeTrainingReviews.filter(college =>
+      college.collegeName.toLowerCase().includes(term.toLowerCase()) ||
+      college.location.toLowerCase().includes(term.toLowerCase()) ||
+      college.type.toLowerCase().includes(term.toLowerCase()) ||
+      college.category.toLowerCase().includes(term.toLowerCase())
+    );
+    setFilteredReviews(filtered);
+    setCurrentPage(1);
+    setSearchParams({ page: '1' });
+  };
 
   // Pagination function
   const getPaginatedReviews = (page = 1, itemsPerPage = 9) => {
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const paginatedData = collegeTrainingReviews.slice(startIndex, endIndex);
+    const paginatedData = filteredReviews.slice(startIndex, endIndex);
 
     return {
       reviews: paginatedData,
-      totalPages: Math.ceil(collegeTrainingReviews.length / itemsPerPage),
+      totalPages: Math.ceil(filteredReviews.length / itemsPerPage),
       currentPage: page,
-      totalReviews: collegeTrainingReviews.length,
-      hasNextPage: endIndex < collegeTrainingReviews.length,
+      totalReviews: filteredReviews.length,
+      hasNextPage: endIndex < filteredReviews.length,
       hasPrevPage: page > 1
     };
   };
@@ -123,7 +139,7 @@ const CollegeTrainingReviews = () => {
     setCurrentPage(page);
     const data = getPaginatedReviews(page, 9);
     setPaginationData(data);
-  }, [searchParams]);
+  }, [searchParams, filteredReviews]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -166,55 +182,91 @@ const CollegeTrainingReviews = () => {
           {/* Navigation Menu */}
           <div className="bg-teal-600 rounded-lg p-1 mb-8">
             <div className="flex flex-wrap gap-1 text-sm">
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">About Henry Harvin</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Henry Harvin in Media</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Affiliations</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Customers</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our CSR Activities</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Gallery</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Participant Reviews</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Corporate Training Reviews</button>
-              <button className="px-4 py-2 bg-white text-teal-600 rounded font-medium">College Training Reviews</button>
-              <button className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Job Support Reviews</button>
+              <Link to="/about" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">About Henry Harvin</Link>
+              <Link to="/media" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Henry Harvin in Media</Link>
+              <Link to="/affiliations" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Affiliations</Link>
+              <Link to="/customers" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Customers</Link>
+              <Link to="/csr" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our CSR Activities</Link>
+              <Link to="/gallery" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Our Gallery</Link>
+              <Link to="/reviews/participant" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Participant Reviews</Link>
+              <Link to="/reviews/corporate" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Corporate Training Reviews</Link>
+              <span className="px-4 py-2 bg-white text-teal-600 rounded font-medium">College Training Reviews</span>
+              <Link to="/reviews/job-support" className="px-4 py-2 text-white hover:bg-teal-700 rounded transition-colors">Job Support Reviews</Link>
             </div>
           </div>
         </div>
 
+        {/* Search Section */}
+        <div className="mb-8">
+          <div className="max-w-md mx-auto">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search colleges by name, location, or type..."
+                value={searchTerm}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="w-full px-4 py-3 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+              />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Search Results Info */}
+          {searchTerm && (
+            <div className="text-center mt-4">
+              <p className="text-gray-600">
+                Found {filteredReviews.length} college{filteredReviews.length !== 1 ? 's' : ''} matching "{searchTerm}"
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* College Training Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {reviews.map((review) => (
-            <div key={review.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-              {/* Company Logo Section */}
-              <div className={`${review.bgColor} p-6 text-center`}>
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-white flex items-center justify-center">
+          {reviews.map((college) => (
+            <div key={college.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200">
+              {/* College Logo Section */}
+              <div className="p-6 text-center bg-gray-50">
+                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-white flex items-center justify-center shadow-sm border border-gray-200">
                   <img
-                    src={review.logo}
-                    alt={`${review.companyName} logo`}
-                    className="w-16 h-16 rounded-full object-cover"
+                    src={college.logo}
+                    alt={`${college.collegeName} logo`}
+                    className="w-20 h-20 rounded-full object-cover"
                   />
                 </div>
-                <h3 className="text-white text-xl font-bold">- {review.companyName}</h3>
+                <h3 className="text-teal-600 text-lg font-bold text-center leading-tight">
+                  {college.collegeName}
+                </h3>
               </div>
 
-              {/* Training Details */}
+              {/* College Details */}
               <div className="p-6">
                 <div className="mb-4">
-                  <p className="text-gray-700 text-sm mb-2">
-                    <span className="font-medium">Training Name:</span> {review.trainingName}
+                  <p className="text-gray-700 text-sm mb-3 leading-relaxed">
+                    {college.description}
                   </p>
-                  <p className="text-gray-700 text-sm mb-2">
-                    {review.language}
-                  </p>
-                  <p className="text-gray-600 text-sm">
-                    {review.type}
-                  </p>
+                  <div className="space-y-2">
+                    <p className="text-gray-600 text-sm">
+                      <span className="font-medium">📍 Location:</span> {college.location}
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      <span className="font-medium">🏛️ Type:</span> {college.type}
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      <span className="font-medium">📅 Established:</span> {college.established}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Training Session Badge */}
+                {/* History Button */}
                 <div className="flex justify-center">
-                  <span className="bg-teal-600 text-white px-4 py-2 rounded-full text-sm font-medium">
-                    {review.category}
-                  </span>
+                  <button className="bg-white border-2 border-orange-400 text-gray-700 px-8 py-2 rounded-md text-sm font-medium hover:bg-orange-50 transition-colors">
+                    History
+                  </button>
                 </div>
               </div>
             </div>
