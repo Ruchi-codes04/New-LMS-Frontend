@@ -192,7 +192,7 @@ const SignUpPopup = () => {
                 </button>
               </div>
             ) : showSignUpForm ? (
-              <form onSubmit={handleSignUpSubmit} className="space-y-4 max-h-96 overflow-y-auto">
+              <form onSubmit={handleSignUpSubmit} className="space-y-4 max-h-96 overflow-y-auto scrollbar-hide">
                 <div className="grid grid-cols-2 gap-4">
                   <input
                     type="text"
@@ -365,9 +365,11 @@ const SignUpPopup = () => {
               </form>
             )}
 
-            <div className="text-center my-6">
-              <span className="text-gray-500">or</span>
-            </div>
+            {!showSignUpForm && !showEmailForm && (
+              <div className="text-center my-6">
+                <span className="text-gray-500">or</span>
+              </div>
+            )}
 
             {!showSignUpForm && (
               <button
