@@ -371,12 +371,12 @@ const SignUpPopup = () => {
               </div>
             )}
 
-            {!showSignUpForm && (
+            {!showSignUpForm && !showEmailForm && (
               <button
-                onClick={() => setShowEmailForm(!showEmailForm)}
+                onClick={() => setShowEmailForm(true)}
                 className="w-full text-gray-700 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors underline"
               >
-                {showEmailForm ? 'Back to Sign Up' : 'Continue with Email'}
+                Continue with Email
               </button>
             )}
 
