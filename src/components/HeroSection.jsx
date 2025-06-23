@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const HeroSection = () => {
   const skillTags = [
@@ -47,9 +48,12 @@ const HeroSection = () => {
                   placeholder="Tell us what you're looking to learn"
                   className="flex-1 px-4 py-2.5 text-gray-700 placeholder-gray-500 bg-transparent focus:outline-none text-sm"
                 />
-                <button className="bg-teal-600 text-white p-2.5 rounded-md hover:bg-teal-700 transition-colors duration-300">
+                <Link
+                  to="/courses/all"
+                  className="bg-teal-600 text-white p-2.5 rounded-md hover:bg-teal-700 transition-colors duration-300 flex items-center justify-center"
+                >
                   <FaSearch className="w-4 h-4" />
-                </button>
+                </Link>
               </div>
             </div>
 

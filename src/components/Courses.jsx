@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 const Courses = () => {
   const [showModal, setShowModal] = useState(false);
@@ -276,11 +277,11 @@ const Courses = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <button
-            onClick={() => setShowModal(true)}
+          <Link
+            to="/courses/all"
             className="inline-flex items-center px-8 py-4 bg-teal-600 text-white rounded-full font-semibold text-sm transition-all duration-300 ease-in-out hover:bg-teal-700 hover:translate-x-1 hover:shadow-lg hover:shadow-teal-600/40"
           >
-            View All Categories
+            View All Courses
             <svg
               className="ml-2 w-5 h-5"
               fill="none"
@@ -294,7 +295,7 @@ const Courses = () => {
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
 

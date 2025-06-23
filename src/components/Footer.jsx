@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaYoutube, FaPhone, FaEnvelope, FaMapMarkerAlt, FaGraduationCap } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -38,7 +39,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-6 font-poppins">Useful Links</h4>
             <ul className="space-y-3">
               <li><a href="#" className="text-gray-400 hover:text-teal-600 transition-colors duration-300 text-sm">About</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-teal-600 transition-colors duration-300 text-sm">Course</a></li>
+              <li><Link to="/courses/all" className="text-gray-400 hover:text-teal-600 transition-colors duration-300 text-sm">Courses</Link></li>
               <li><a href="#" className="text-gray-400 hover:text-teal-600 transition-colors duration-300 text-sm">Instructor</a></li>
               <li><a href="#" className="text-gray-400 hover:text-teal-600 transition-colors duration-300 text-sm">Events</a></li>
               <li><a href="#" className="text-gray-400 hover:text-teal-600 transition-colors duration-300 text-sm">Instructor Details</a></li>

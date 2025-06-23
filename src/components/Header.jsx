@@ -39,7 +39,7 @@ const Header = () => {
 
           {/* Navigation Links - Desktop */}
           <nav className="hidden lg:flex items-center space-x-6 flex-shrink-0">
-            <Link to="/courses/all" className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded text-sm hover:bg-gray-200 transition-colors duration-300">
+            <Link to="/courses/" className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded text-sm hover:bg-gray-200 transition-colors duration-300">
               All Courses
             </Link>
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const PopularCourses = () => {
   const courses = [
@@ -150,9 +151,12 @@ const PopularCourses = () => {
 
                 {/* Buttons */}
                 <div className="flex space-x-2 mt-auto">
-                  <button className="flex-1 bg-white border border-gray-300 text-gray-700 py-1.5 sm:py-2 px-2 sm:px-3 rounded text-xs hover:bg-gray-50 transition-colors duration-300">
+                  <Link
+                    to="/courses/all"
+                    className="flex-1 bg-white border border-gray-300 text-gray-700 py-1.5 sm:py-2 px-2 sm:px-3 rounded text-xs hover:bg-gray-50 transition-colors duration-300 text-center"
+                  >
                     View Program
-                  </button>
+                  </Link>
                   <button className="flex-1 bg-teal-600 text-white py-1.5 sm:py-2 px-2 sm:px-3 rounded text-xs hover:bg-teal-500 transition-colors duration-300 flex items-center justify-center">
                     <span className="mr-1">📄</span>
                     Syllabus
