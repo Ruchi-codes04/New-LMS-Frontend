@@ -13,7 +13,7 @@ const Footer = () => {
               <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
                 <FaGraduationCap className="text-white text-xl" />
               </div>
-              <h3 className="text-2xl font-bold font-poppins">EduTec</h3>
+              <h3 className="text-2xl font-bold font-poppins">BrainBridge</h3>
             </div>
             <p className="text-gray-400 mb-6 text-sm leading-relaxed">
               Lorem ipsum dolor amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore.

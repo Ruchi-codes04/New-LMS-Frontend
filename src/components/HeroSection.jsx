@@ -11,7 +11,12 @@ const HeroSection = () => {
     'Cybersecurity',
     'Financial Management',
     'Cloud Computing',
-    'DevOps'
+    'DevOps',
+    'Game Development',
+    'Graphic Design',
+    'SEO',
+
+
   ];
 
   const stats = [
@@ -40,7 +45,7 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* Search Bar */}
+            {/* Search Bar
             <div className="bg-white border border-gray-300 rounded-lg p-1 shadow-sm max-w-lg">
               <div className="flex items-center">
                 <input
@@ -55,16 +60,16 @@ const HeroSection = () => {
                   <FaSearch className="w-4 h-4" />
                 </Link>
               </div>
-            </div>
+            </div> */}
 
             {/* Goal Selection */}
             <div className="space-y-2">
-              <p className="text-gray-700 font-medium text-sm">Or select your goal 🎯</p>
+              <p className="text-teal-600 font-medium text-sm">Or select your goal 📌 </p>
               <div className="flex flex-wrap gap-2">
                 {skillTags.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-2.5 py-1.5 bg-gray-100 text-gray-700 rounded text-xs hover:bg-teal-50 hover:text-teal-700 cursor-pointer transition-colors duration-300 border border-gray-200"
+                    className="px-2.5 py-1.5 text-gray-800 rounded text-xs bg-teal-50 hover:text-teal-700 cursor-pointer transition-colors duration-300 border border-gray-300"
                   >
                     {tag}
                   </span>
@@ -80,16 +85,16 @@ const HeroSection = () => {
               <div className="absolute inset-0 border-2 border-dashed border-gray-300 rounded-lg transform translate-x-3 translate-y-3"></div>
 
               {/* Main content container */}
-              <div className="relative bg-white rounded-lg p-6 shadow-lg">
+              <div className="relative bg-white rounded-lg p-6 border border-gray-200 shadow-lg">
                 <div className="text-center">
-                  <h2 className="text-lg font-bold text-teal-600 mb-3">BRAIN BRIDGE</h2>
+                  {/* <h2 className="text-lg font-bold text-teal-600 mb-3">BRAIN BRIDGE</h2> */}
 
                   {/* Professional person image */}
-                  <div className="mb-3">
+                  <div className="mb-2">
                     <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=face"
+                      src="https://images.pexels.com/photos/7034789/pexels-photo-7034789.jpeg"
                       alt="Professional instructor"
-                      className="w-36 h-48 object-cover rounded-lg mx-auto"
+                      className="w-50 h-50 object-cover rounded-lg mx-auto"
                     />
                   </div>
 
@@ -104,7 +109,7 @@ const HeroSection = () => {
         </div>
 
         {/* Statistics Section */}
-        <div className="mt-12">
+        <div className="mt-16">
           <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               {stats.map((stat, index) => (

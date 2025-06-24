@@ -9,7 +9,7 @@ import PopularCourses from './components/PopularCourses'
 import WhyChooseUs from './components/WhyChooseUs'
 import Testimonials from './components/Testimonials'
 import Instructors from './components/Instructors'
-
+import TrendingCourses from '../src/components/TrendingCourses';
 import Reviews from './components/Reviews'
 import Footer from './components/Footer'
 import SignUpPopup from './components/SignUpPopup'
@@ -63,7 +63,7 @@ const Home = () => {
     <>
       <div className="mx-4 sm:mx-6 lg:mx-8">
         <HeroSection />
-        <PopularCourses />
+      <TrendingCourses />
         <Courses />
         <AboutUs />
         <WhyChooseUs />
