@@ -12,7 +12,7 @@ const AboutTemplate = ({
 }) => {
   return (
     <div className="bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
         {/* Breadcrumbs */}
         {showBreadcrumbs && (
           <div className="mb-8">
@@ -34,7 +34,7 @@ const AboutTemplate = ({
         </div>
         
         {/* Main Content */}
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden mb-12">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
           <div className="md:flex">
             {/* Image */}
             {image && (
