@@ -10,7 +10,6 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 
-// FAQ Data
 // FAQ Data (first 20 questions)
 const faqs = [
   {
