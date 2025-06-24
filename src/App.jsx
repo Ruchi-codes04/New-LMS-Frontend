@@ -53,7 +53,8 @@ import {
 // Import course pages
 import {
   AllCourses,
-  CorporateTraining
+  CorporateTraining,
+  ViewCourse
 } from './pages/Courses'
 
 // Home page component
@@ -117,6 +118,7 @@ function App() {
 
           {/* Course Routes */}
           <Route path="/courses/all" element={<AllCourses />} />
+          <Route path="/courses/:id" element={<ViewCourse />} />
           <Route path="/corporate-training" element={<CorporateTraining />} />
 
           {/* 404 Route - must be last */}

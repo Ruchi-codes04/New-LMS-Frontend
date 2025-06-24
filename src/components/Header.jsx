@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaChevronDown } from "react-icons/fa";
 import { useSignUp } from "../contexts/SignUpContext";
+import ComingSoonPopup from "./ComingSoonPopup";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
+  const [comingSoonFeature, setComingSoonFeature] = useState('');
   const { showSignUpPopup } = useSignUp();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleComingSoonClick = (featureName) => {
+    setComingSoonFeature(featureName);
+    setShowComingSoon(true);
   };
 
   return (
@@ -55,13 +63,13 @@ const Header = () => {
                   <Link to="/reviews/corporate" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Corporate Training Reviews</Link>
                   <Link to="/reviews/college" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">College Training Reviews</Link>
                   <Link to="/reviews/job-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Job Support Reviews</Link>
-                  <Link to="/reviews/mouthshut" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Mouth Shut Reviews</Link>
-                  <Link to="/reviews/justdial" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Just Dial Reviews</Link>
+                  <button onClick={() => handleComingSoonClick('MouthShut Reviews')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Mouth Shut Reviews</button>
+                  <button onClick={() => handleComingSoonClick('JustDial Reviews')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Just Dial Reviews</button>
                   <Link to="/reviews/reporter" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Reviews Reporter</Link>
-                  <Link to="/reviews/linkedin" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Linkedin Reviews</Link>
-                  <Link to="/reviews/youtube" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Youtube Reviews</Link>
+                  <button onClick={() => handleComingSoonClick('LinkedIn Reviews')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Linkedin Reviews</button>
+                  <button onClick={() => handleComingSoonClick('YouTube Reviews')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Youtube Reviews</button>
                   <Link to="/reviews/complaints" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Learner Reviews & Complaints</Link>
-                  <Link to="/reviews/medium" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Medium Reviews</Link>
+                  <button onClick={() => handleComingSoonClick('Medium Reviews')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Medium Reviews</button>
                 </div>
               </div>
             </div>
@@ -77,10 +85,10 @@ const Header = () => {
               </button>
               <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 <div className="py-1" role="menu" aria-orientation="vertical">
-                  <Link to="/students/customer-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Customer Support</Link>
+                  <Link to="/students/customer-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Student Support</Link>
                   <Link to="/students/events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Events</Link>
-                  <Link to="/students/internship-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Internship Support</Link>
-                  <Link to="/students/career-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Career Support</Link>
+                  <button onClick={() => handleComingSoonClick('Internship Support')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Internship Support</button>
+                  <button onClick={() => handleComingSoonClick('Career Support')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Career Support</button>
                   <Link to="/students/certification" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Certification</Link>
                   <Link to="/students/submit-feedback" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Submit Feedback</Link>
                 </div>
@@ -96,7 +104,7 @@ const Header = () => {
                 <div className="py-1" role="menu" aria-orientation="vertical">
                   <Link to="/about/company" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">About Brain Bridge</Link>
                   <Link to="/about/team" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Affiliation</Link>
-                  <Link to="/about/mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Customers</Link>
+                  <Link to="/about/mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Student</Link>
 
                   <Link to="/about/testimonials" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Placement Partners</Link>
                   <Link to="/about/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Contact Us</Link>
@@ -180,13 +188,13 @@ const Header = () => {
                   <Link to="/reviews/corporate" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Corporate Training Reviews</Link>
                   <Link to="/reviews/college" className="block py-2 text-sm text-gray-700 hover:text-teal-600">College Training Reviews</Link>
                   <Link to="/reviews/job-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Job Support Reviews</Link>
-                  <Link to="/reviews/mouthshut" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Mouth Shut Reviews</Link>
-                  <Link to="/reviews/justdial" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Just Dial Reviews</Link>
+                  <button onClick={() => handleComingSoonClick('MouthShut Reviews')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Mouth Shut Reviews</button>
+                  <button onClick={() => handleComingSoonClick('JustDial Reviews')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Just Dial Reviews</button>
                   <Link to="/reviews/reporter" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Reviews Reporter</Link>
-                  <Link to="/reviews/linkedin" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Linkedin Reviews</Link>
-                  <Link to="/reviews/youtube" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Youtube Reviews</Link>
+                  <button onClick={() => handleComingSoonClick('LinkedIn Reviews')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Linkedin Reviews</button>
+                  <button onClick={() => handleComingSoonClick('YouTube Reviews')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Youtube Reviews</button>
                   <Link to="/reviews/complaints" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Learner Reviews & Complaints</Link>
-                  <Link to="/reviews/medium" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Medium Reviews</Link>
+                  <button onClick={() => handleComingSoonClick('Medium Reviews')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Medium Reviews</button>
                 </div>
               </li>
               <li>
@@ -209,8 +217,8 @@ const Header = () => {
                 <div className="hidden mt-2 ml-4 border-l-2 border-gray-200 pl-4">
                   <Link to="/students/customer-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Customer Support</Link>
                   <Link to="/students/events" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Events</Link>
-                  <Link to="/students/internship-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Internship Support</Link>
-                  <Link to="/students/career-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Career Support</Link>
+                  <button onClick={() => handleComingSoonClick('Internship Support')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Internship Support</button>
+                  <button onClick={() => handleComingSoonClick('Career Support')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Career Support</button>
                   <Link to="/students/certification" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Certification</Link>
                   <Link to="/students/submit-feedback" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Submit Feedback</Link>
                 </div>
@@ -248,6 +256,13 @@ const Header = () => {
           </nav>
         </div>
       </div>
+
+      {/* Coming Soon Popup */}
+      <ComingSoonPopup
+        isOpen={showComingSoon}
+        onClose={() => setShowComingSoon(false)}
+        featureName={comingSoonFeature}
+      />
     </header>
   );
 };

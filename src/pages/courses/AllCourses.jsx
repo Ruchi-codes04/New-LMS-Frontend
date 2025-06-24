@@ -485,18 +485,111 @@ const AllCourses = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-teal-600 to-teal-700 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Explore Our Course Catalog
-            </h1>
-            <p className="text-teal-100 text-lg max-w-3xl mx-auto mb-8">
-              Discover a wide range of courses designed to help you advance your career, learn new skills, and achieve your goals.
-            </p>
+      <section className="py-20 lg:py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left Content */}
+            <div className="space-y-8">
+              {/* Trust Badge */}
+              <div className="inline-flex items-center px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">
+                <span className="w-2 h-2 bg-teal-600 rounded-full mr-2"></span>
+                Trusted by 1M+ professionals worldwide
+              </div>
+
+              {/* Main Heading */}
+              <div className="space-y-6">
+                <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                  Professional Course Catalog
+                </h1>
+              </div>
+
+              {/* Key Value Propositions */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Expert Instructors</h3>
+                    <p className="text-sm text-gray-600">Learn from industry professionals with real-world experience</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Verified Certificates</h3>
+                    <p className="text-sm text-gray-600">Earn industry-recognized credentials to boost your career</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Flexible Learning</h3>
+                    <p className="text-sm text-gray-600">Study at your own pace with lifetime access to content</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Community Support</h3>
+                    <p className="text-sm text-gray-600">Connect with peers and get help when you need it</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content */}
+            <div className="relative">
+              {/* Main Image */}
+              <div className="relative bg-white rounded-2xl shadow-xl p-8">
+                <img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                  alt="Professional Learning Environment"
+                  className="w-full h-80 lg:h-96 object-cover rounded-xl"
+                />
+
+                {/* Stats Overlay */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-100">
+                    <div className="grid grid-cols-3 gap-4 text-center">
+                      <div>
+                        <div className="text-2xl font-bold text-teal-600">500+</div>
+                        <div className="text-xs text-gray-600">Courses</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-teal-600">50K+</div>
+                        <div className="text-xs text-gray-600">Students</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-teal-600">4.8★</div>
+                        <div className="text-xs text-gray-600">Rating</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Statistics Section */}
       <section className="py-10 bg-white">
@@ -527,7 +620,7 @@ const AllCourses = () => {
 
       {/* Course Catalog Section */}
       <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 bg-white">
           {/* Category Tabs */}
           <div className="mb-8">
             {/* Scrollable Container */}
@@ -971,9 +1064,12 @@ const AllCourses = () => {
                             <span className="font-bold text-gray-900">{course.price}</span>
                             <span className="text-gray-500 text-sm line-through ml-2">{course.originalPrice}</span>
                           </div>
-                          <button className="bg-teal-600 text-white px-4 py-2 rounded text-sm hover:bg-teal-700 transition-colors">
+                          <Link
+                            to={`/courses/${course.id}`}
+                            className="bg-teal-600 text-white px-4 py-2 rounded text-sm hover:bg-teal-700 transition-colors inline-block text-center"
+                          >
                             View Course
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -1099,52 +1195,6 @@ const AllCourses = () => {
           }
         ]}
       />
-
-      {/* Corporate Training CTA */}
-      <section className="py-16 bg-gradient-to-r from-teal-600 to-teal-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Looking for Corporate Training Solutions?
-            </h2>
-            <p className="text-teal-100 text-lg mb-8 max-w-3xl mx-auto">
-              Transform your workforce with our customized corporate training programs.
-              We offer tailored solutions for organizations of all sizes across various industries.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/corporate-training"
-                className="bg-white text-teal-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                Explore Corporate Training
-              </Link>
-              <button
-                onClick={() => {
-                  // Navigate to corporate training and scroll to consultation form
-                  window.location.href = '/corporate-training#consultation-form';
-                }}
-                className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-teal-700 transition-colors"
-              >
-                Request Consultation
-              </button>
-            </div>
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
-              <div className="text-center">
-                <div className="text-2xl font-bold mb-1">500+</div>
-                <div className="text-teal-100">Companies Trained</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold mb-1">50+</div>
-                <div className="text-teal-100">Training Programs</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold mb-1">98%</div>
-                <div className="text-teal-100">Satisfaction Rate</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Signup Popup */}
       <SignUpPopup
