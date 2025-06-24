@@ -144,7 +144,7 @@ const CustomerSupport = () => {
 
   return (
     <StudentTemplate
-      title="Customer Support"
+      title="Student Support"
       subtitle="We're here to help you with any questions or issues"
     >
       <div className="flex flex-col lg:flex-row gap-8">
