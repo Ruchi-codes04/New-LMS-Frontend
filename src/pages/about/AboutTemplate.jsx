@@ -10,8 +10,21 @@ const AboutTemplate = ({
 }) => {
   return (
     <div className="bg-white">
+<<<<<<< HEAD
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        {/* Breadcrumbs */}
+        {showBreadcrumbs && (
+          <div className="mb-8">
+            <Link to="/" className="flex items-center text-teal-600 hover:text-teal-700 transition-colors">
+              <FaArrowLeft className="mr-2" />
+              <span>Back to Home</span>
+            </Link>
+          </div>
+        )}
+=======
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
+>>>>>>> 1a1631c7e24382ab8a3bc41e3af159c55294eadd
         
         {/* Header */}
         <div className="text-center mb-12">
@@ -24,7 +37,7 @@ const AboutTemplate = ({
         </div>
         
         {/* Main Content */}
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden mb-12">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
           <div className="md:flex">
             {/* Image */}
             {image && (
