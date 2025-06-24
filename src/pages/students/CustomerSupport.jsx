@@ -1,20 +1,13 @@
-import React, { useState } from "react";
 import {
   FaHeadset,
   FaEnvelope,
   FaPhone,
-  FaQuestionCircle,
   FaChevronRight,
-  FaPlus,
-  FaMinus,
   FaPaperPlane,
 } from "react-icons/fa";
+import FAQ from "../../components/FAQ";
 
-<<<<<<< HEAD
-// FAQ Data (first 20 questions)
-=======
 // FAQ Data
->>>>>>> 1d9d9d8d577628f3c0ff263b0e82d858592be56a
 const faqs = [
   {
     question: "How do I reset my password?",
@@ -71,11 +64,6 @@ const StudentTemplate = ({ title, subtitle, children }) => (
 );
 
 const CustomerSupport = () => {
-  const [activeFAQ, setActiveFAQ] = useState(null);
-
-  const toggleFAQ = (index) => {
-    setActiveFAQ(activeFAQ === index ? null : index);
-  };
 
   return (
     <StudentTemplate
@@ -141,35 +129,11 @@ const CustomerSupport = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-white p-8 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-          <FaQuestionCircle className="text-teal-600 mr-3" />
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="border-b border-gray-200 pb-4 cursor-pointer transition-all"
-              onClick={() => toggleFAQ(index)}
-            >
-              <div className="flex justify-between items-center">
-                <h3 className="font-medium text-gray-800 text-base md:text-lg">
-                  {faq.question}
-                </h3>
-                <span className="text-teal-600 text-xl transition-transform">
-                  {activeFAQ === index ? <FaMinus /> : <FaPlus />}
-                </span>
-              </div>
-              {activeFAQ === index && (
-                <p className="text-gray-600 mt-2 pl-4 leading-relaxed transition-all duration-300">
-                  {faq.answer}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
+      <FAQ
+        title="Frequently Asked Questions"
+        subtitle="Find answers to common questions about our support services and platform"
+        faqs={faqs}
+      />
 
       {/* Support Form */}
       <section className="bg-white p-8 rounded-2xl shadow-lg">
