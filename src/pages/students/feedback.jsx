@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHeadset, FaCalendarAlt, FaBriefcase, FaGraduationCap, FaCertificate, FaCommentAlt, FaArrowLeft } from 'react-icons/fa';
+import { FaHeadset, FaCalendarAlt, FaBriefcase, FaGraduationCap, FaCertificate, FaCommentAlt } from 'react-icons/fa';
 
 const StudentTemplate = ({ children, title, subtitle }) => {
   const location = useLocation();
@@ -17,12 +17,7 @@ const StudentTemplate = ({ children, title, subtitle }) => {
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Breadcrumbs */}
         <div className="mb-6">
-          <Link to="/" className="flex items-center text-teal-600 hover:text-teal-700 transition-colors mb-4">
-            <FaArrowLeft className="mr-2" />
-            <span>Back to Home</span>
-          </Link>
           
           <nav className="flex" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+
 
 const LearnerReviewsComplaints = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -99,13 +99,7 @@ const LearnerReviewsComplaints = () => {
       {/* Purple Header Section */}
       <div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <div className="py-8">
-            <Link to="/" className="flex items-center text-teal-600 hover:text-teal-700 transition-colors">
-              <FaArrowLeft className="mr-2" />
-              <span>Back to Home</span>
-            </Link>
-          </div>
+
           {/* Header Content */}
           <div className="">
             <div className="flex flex-col lg:flex-row items-center justify-between">

@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
 
 const AboutTemplate = ({ 
   title, 
@@ -13,15 +11,7 @@ const AboutTemplate = ({
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Breadcrumbs */}
-        {showBreadcrumbs && (
-          <div className="mb-8">
-            <Link to="/" className="flex items-center text-teal-600 hover:text-teal-700 transition-colors">
-              <FaArrowLeft className="mr-2" />
-              <span>Back to Home</span>
-            </Link>
-          </div>
-        )}
+
         
         {/* Header */}
         <div className="text-center mb-12">

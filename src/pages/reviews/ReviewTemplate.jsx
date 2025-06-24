@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft, FaThumbsUp, FaComment, FaShare, FaArrowLeft } from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft, FaThumbsUp, FaComment, FaShare } from 'react-icons/fa';
 
 const ReviewTemplate = ({ category, description, source, externalLink }) => {
   const [sortBy, setSortBy] = useState('newest');
@@ -378,13 +378,7 @@ const ReviewTemplate = ({ category, description, source, externalLink }) => {
   return (
     <div className="bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Breadcrumb */}
-        <div className="mb-8">
-          <Link to="/" className="flex items-center text-teal-600 hover:text-teal-700 transition-colors">
-            <FaArrowLeft className="mr-2" />
-            <span>Back to Home</span>
-          </Link>
-        </div>
+
         
         {/* Header */}
         <div className="mb-12">
