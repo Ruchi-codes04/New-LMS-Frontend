@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaSearch, FaChevronDown } from "react-icons/fa";
+import { FaSearch, FaChevronDown, FaGraduationCap } from "react-icons/fa";
 import { useSignUp } from "../contexts/SignUpContext";
 import ComingSoonPopup from "./ComingSoonPopup";
 
@@ -26,8 +26,13 @@ const Header = () => {
 
           {/* Logo */}
           <div className="flex items-center flex-shrink-0">
-            <Link to="/" className="text-xl font-bold text-teal-600 hover:text-teal-700 transition-colors">
-              BRAIN BRIDGE
+            <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+              <div className="flex items-center">
+                <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center mr-3">
+                  <FaGraduationCap className="text-white text-xl" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">BrainBridge</h3>
+              </div>
             </Link>
           </div>
 
@@ -85,7 +90,7 @@ const Header = () => {
               </button>
               <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 <div className="py-1" role="menu" aria-orientation="vertical">
-                  <Link to="/students/customer-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Student Support</Link>
+                  <Link to="/students/student-support" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Student Support</Link>
                   <Link to="/students/events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Events</Link>
                   <button onClick={() => handleComingSoonClick('Internship Support')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Internship Support</button>
                   <button onClick={() => handleComingSoonClick('Career Support')} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Career Support</button>
@@ -102,7 +107,7 @@ const Header = () => {
               </button>
               <div className="absolute left-0 mt-2 w-50 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 <div className="py-1" role="menu" aria-orientation="vertical">
-                  <Link to="/about/company" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">About Brain Bridge</Link>
+                  <Link to="/about/company" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">About BrainBridge</Link>
                   <Link to="/about/team" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Affiliation</Link>
                   <Link to="/about/mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-teal-600" role="menuitem">Our Student</Link>
 
@@ -215,7 +220,7 @@ const Header = () => {
                   <FaChevronDown className="w-2 h-2" />
                 </button>
                 <div className="hidden mt-2 ml-4 border-l-2 border-gray-200 pl-4">
-                  <Link to="/students/customer-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Customer Support</Link>
+                  <Link to="/students/student-support" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Student Support</Link>
                   <Link to="/students/events" className="block py-2 text-sm text-gray-700 hover:text-teal-600">Events</Link>
                   <button onClick={() => handleComingSoonClick('Internship Support')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Internship Support</button>
                   <button onClick={() => handleComingSoonClick('Career Support')} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-teal-600">Career Support</button>

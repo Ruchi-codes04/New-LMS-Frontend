@@ -279,7 +279,7 @@ const Courses = () => {
         <div className="text-center mt-12">
           <Link
             to="/courses/all"
-            className="inline-flex items-center px-8 py-4 bg-teal-600 text-white rounded-full font-semibold text-sm transition-all duration-300 ease-in-out hover:bg-teal-700 hover:translate-x-1 hover:shadow-lg hover:shadow-teal-600/40"
+            className="inline-flex items-center px-8 py-4 bg-teal-600 text-white rounded-lg font-semibold text-sm transition-all duration-300 ease-in-out hover:bg-teal-700 hover:translate-x-1 hover:shadow-lg hover:shadow-teal-600/40"
           >
             View All Courses
             <svg

@@ -102,21 +102,7 @@ const FAQ = ({ title, subtitle, faqs }) => {
           ))}
         </div>
 
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <p className="text-gray-600 mb-6">Still have questions?</p>
-          <motion.button
-            className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-teal-800 transition duration-300 shadow-lg"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Contact Our Training Experts
-          </motion.button>
-        </motion.div>
+
       </div>
     </section>
   );

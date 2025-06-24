@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
 
 const AboutTemplate = ({ 
   title, 
@@ -12,7 +10,8 @@ const AboutTemplate = ({
 }) => {
   return (
     <div className="bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<<<<<<< HEAD
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
         {/* Breadcrumbs */}
         {showBreadcrumbs && (
           <div className="mb-8">
@@ -22,6 +21,10 @@ const AboutTemplate = ({
             </Link>
           </div>
         )}
+=======
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+>>>>>>> 1a1631c7e24382ab8a3bc41e3af159c55294eadd
         
         {/* Header */}
         <div className="text-center mb-12">
@@ -34,7 +37,7 @@ const AboutTemplate = ({
         </div>
         
         {/* Main Content */}
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden mb-12">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
           <div className="md:flex">
             {/* Image */}
             {image && (

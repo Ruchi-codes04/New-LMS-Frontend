@@ -1,10 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaFilter, FaStar, FaRegClock, FaUserGraduate, FaChevronDown } from 'react-icons/fa';
+import Instructors from '../../components/Instructors';
 import TrendingCourses from '../../components/TrendingCourses';
 import MicrosoftAI from '../../components/MicrosoftAI';
 import FAQ from '../../components/FAQ';
 import SignUpPopup from '../../components/SignUpPopup';
+
+// Add CSS for hiding scrollbar
+const scrollbarHideStyles = `
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+`;
 
 const AllCourses = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -12,8 +24,9 @@ const AllCourses = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [showSignupPopup, setShowSignupPopup] = useState(false);
-  const coursesPerPage = 6;
+  const coursesPerPage = 9;
   const scrollRef = useRef(null);
+  const coursesScrollRef = useRef(null);
 
   // Filter states
   const [filters, setFilters] = useState({
@@ -390,8 +403,13 @@ const AllCourses = () => {
   // Pagination handlers
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    // Scroll to the top of the courses section
+    // Scroll the course container to the top
     setTimeout(() => {
+      if (coursesScrollRef.current) {
+        coursesScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Also scroll to the top of the courses section
       const coursesSection = document.querySelector('.courses-section');
       if (coursesSection) {
         const yOffset = -80; // Offset to account for header
@@ -446,6 +464,30 @@ const AllCourses = () => {
     };
   }, []);
 
+  // Synchronized scrolling effect
+  useEffect(() => {
+    const handleWheelOnCoursesArea = (e) => {
+      // Check if the target is not already the courses scrollable container
+      if (!e.target.closest('.courses-scrollable-container')) {
+        e.preventDefault();
+        if (coursesScrollRef.current) {
+          coursesScrollRef.current.scrollTop += e.deltaY;
+        }
+      }
+    };
+
+    const coursesSection = document.querySelector('.courses-section');
+    if (coursesSection) {
+      coursesSection.addEventListener('wheel', handleWheelOnCoursesArea, { passive: false });
+    }
+
+    return () => {
+      if (coursesSection) {
+        coursesSection.removeEventListener('wheel', handleWheelOnCoursesArea);
+      }
+    };
+  }, []);
+
   // Generate page numbers for pagination
   const getPageNumbers = () => {
     const pages = [];
@@ -484,6 +526,7 @@ const AllCourses = () => {
 
   return (
     <div className="min-h-screen">
+      <style dangerouslySetInnerHTML={{ __html: scrollbarHideStyles }} />
       {/* Hero Section */}
       <section className="py-20 lg:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -648,7 +691,7 @@ const AllCourses = () => {
           </div>
 
           {/* Filter Button (Mobile) */}
-          <div className="md:hidden mb-6">
+          <div className="md:hidden mb-6 courses-mobile-filters">
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="w-full flex items-center justify-between px-4 py-3 bg-white border border-gray-200 rounded-md shadow-sm"
@@ -809,7 +852,7 @@ const AllCourses = () => {
           {/* Main Content */}
           <div className="flex flex-col md:flex-row courses-section">
             {/* Sidebar Filters (Desktop) */}
-            <div className="hidden md:block w-64 flex-shrink-0 mr-8">
+            <div className="hidden md:block w-64 flex-shrink-0 mr-8 courses-sidebar">
               <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm sticky top-24">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="font-bold text-gray-900">Filters</h2>
@@ -1014,66 +1057,82 @@ const AllCourses = () => {
               </div>
 
               {filteredCourses.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {currentCourses.map(course => (
-                    <div key={course.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
-                      <div className="relative pb-[56.25%]">
-                        <img
-                          src={course.image}
-                          alt={course.title}
-                          className="absolute h-full w-full object-cover"
-                        />
-                      </div>
-                      <div className="p-5">
-                        <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-2">{course.title}</h3>
-                        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{course.description}</p>
+                <div className="relative h-[600px]">
+          
 
-                        <div className="flex items-center mb-3">
-                          <p className="text-sm text-gray-700">By <span className="font-medium">{course.instructor}</span></p>
-                        </div>
+                  {/* Scrollable Container */}
+                  <div
+                    ref={coursesScrollRef}
+                    className="h-full overflow-y-auto pr-4 scrollbar-hide courses-scrollable-container"
+                    style={{
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none',
+                      WebkitOverflowScrolling: 'touch',
+                      paddingRight: '10px'
+                    }}
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-4">
+                      {currentCourses.map(course => (
+                        <div key={course.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+                          <div className="relative pb-[56.25%]">
+                            <img
+                              src={course.image}
+                              alt={course.title}
+                              className="absolute h-full w-full object-cover"
+                            />
+                          </div>
+                          <div className="p-5">
+                            <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-2">{course.title}</h3>
+                            <p className="text-gray-600 text-sm mb-3 line-clamp-2">{course.description}</p>
 
-                        <div className="flex items-center mb-3">
-                          <div className="flex items-center">
-                            <span className="text-yellow-400 font-bold mr-1">{course.rating}</span>
-                            <div className="flex">
-                              {[...Array(5)].map((_, i) => (
-                                <FaStar
-                                  key={i}
-                                  className={`w-3 h-3 ${i < Math.floor(course.rating) ? 'text-yellow-400' : 'text-gray-300'}`}
-                                />
-                              ))}
+                            <div className="flex items-center mb-3">
+                              <p className="text-sm text-gray-700">By <span className="font-medium">{course.instructor}</span></p>
+                            </div>
+
+                            <div className="flex items-center mb-3">
+                              <div className="flex items-center">
+                                <span className="text-yellow-400 font-bold mr-1">{course.rating}</span>
+                                <div className="flex">
+                                  {[...Array(5)].map((_, i) => (
+                                    <FaStar
+                                      key={i}
+                                      className={`w-3 h-3 ${i < Math.floor(course.rating) ? 'text-yellow-400' : 'text-gray-300'}`}
+                                    />
+                                  ))}
+                                </div>
+                              </div>
+                              <span className="text-xs text-gray-500 ml-2">({course.reviews})</span>
+                              <span className="text-xs text-gray-500 ml-4">{course.students.toLocaleString()} students</span>
+                            </div>
+
+                            <div className="flex items-center text-xs text-gray-500 mb-4">
+                              <div className="flex items-center mr-3">
+                                <FaRegClock className="mr-1" />
+                                <span>{course.duration}</span>
+                              </div>
+                              <div className="flex items-center">
+                                <FaUserGraduate className="mr-1" />
+                                <span>{course.level}</span>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <span className="font-bold text-gray-900">{course.price}</span>
+                                <span className="text-gray-500 text-sm line-through ml-2">{course.originalPrice}</span>
+                              </div>
+                              <Link
+                                to={`/courses/${course.id}`}
+                                className="bg-teal-600 text-white px-4 py-2 rounded text-sm hover:bg-teal-700 transition-colors inline-block text-center"
+                              >
+                                View Course
+                              </Link>
                             </div>
                           </div>
-                          <span className="text-xs text-gray-500 ml-2">({course.reviews})</span>
-                          <span className="text-xs text-gray-500 ml-4">{course.students.toLocaleString()} students</span>
                         </div>
-
-                        <div className="flex items-center text-xs text-gray-500 mb-4">
-                          <div className="flex items-center mr-3">
-                            <FaRegClock className="mr-1" />
-                            <span>{course.duration}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <FaUserGraduate className="mr-1" />
-                            <span>{course.level}</span>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <span className="font-bold text-gray-900">{course.price}</span>
-                            <span className="text-gray-500 text-sm line-through ml-2">{course.originalPrice}</span>
-                          </div>
-                          <Link
-                            to={`/courses/${course.id}`}
-                            className="bg-teal-600 text-white px-4 py-2 rounded text-sm hover:bg-teal-700 transition-colors inline-block text-center"
-                          >
-                            View Course
-                          </Link>
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
               ) : (
                 <div className="bg-white p-8 rounded-lg text-center">
@@ -1167,6 +1226,8 @@ const AllCourses = () => {
 
       {/* Microsoft AI Section */}
       <MicrosoftAI />
+
+      <Instructors />
 
       {/* FAQ Section */}
       <FAQ

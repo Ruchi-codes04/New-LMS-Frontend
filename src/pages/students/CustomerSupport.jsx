@@ -10,7 +10,11 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 
+<<<<<<< HEAD
 // FAQ Data (first 20 questions)
+=======
+// FAQ Data
+>>>>>>> 1d9d9d8d577628f3c0ff263b0e82d858592be56a
 const faqs = [
   {
     question: "How do I reset my password?",
@@ -51,46 +55,6 @@ const faqs = [
   {
     question: "How do I cancel my subscription?",
     answer: "Go to 'Billing' in your account settings and click 'Cancel Subscription'. Your access will continue until the end of your current billing period.",
-  },
-  {
-    question: "What are the system requirements?",
-    answer: "We support modern browsers (Chrome, Firefox, Safari, Edge) on desktop and mobile. A minimum of 5Mbps internet speed is recommended for video content.",
-  },
-  {
-    question: "How do I report a technical issue?",
-    answer: "Use the 'Report Issue' button in the course player or contact our technical support team through the support form.",
-  },
-  {
-    question: "Can I download videos for offline viewing?",
-    answer: "Yes, our mobile apps allow you to download videos for offline viewing. This feature is not available on desktop browsers.",
-  },
-  {
-    question: "How do I change my notification settings?",
-    answer: "Go to 'Notification Preferences' in your account settings to customize which emails and alerts you receive.",
-  },
-  {
-    question: "What's your privacy policy?",
-    answer: "We take your privacy seriously. You can read our full privacy policy in the footer of our website or in your account settings.",
-  },
-  {
-    question: "How do I enroll in a new course?",
-    answer: "Browse our course catalog, select a course, and click 'Enroll Now'. You'll be guided through the payment process if the course isn't free.",
-  },
-  {
-    question: "Are there any discounts available?",
-    answer: "We offer seasonal promotions and discounts for students. Check our homepage or subscribe to our newsletter for current offers.",
-  },
-  {
-    question: "How do I track my learning progress?",
-    answer: "Each course has a progress tracker in the sidebar. You can also see your overall progress in your dashboard.",
-  },
-  {
-    question: "Can I switch to a different course?",
-    answer: "Yes, within the first 14 days of enrollment, you can switch to a different course of equal or lesser value. Contact support for assistance.",
-  },
-  {
-    question: "How do I become an instructor?",
-    answer: "We're always looking for qualified instructors! Visit our 'Teach with Us' page to learn about the application process.",
   },
 ];
 
@@ -207,119 +171,83 @@ const CustomerSupport = () => {
         </div>
       </section>
 
-      {/* Support Request Form */}
+      {/* Support Form */}
       <section className="bg-white p-8 rounded-2xl shadow-lg">
-        <div className="flex items-center mb-6">
-          <div className="bg-teal-100 p-3 rounded-full mr-4">
-            <FaPaperPlane className="text-teal-600 w-6 h-6" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-800">
-            Submit a Support Request
-          </h2>
-        </div>
-
-        <form className="space-y-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+          <FaPaperPlane className="text-teal-600 mr-3" />
+          Submit a Support Request
+        </h2>
+        <form className="space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {[
-              {
-                id: "name",
-                label: "Your Name",
-                type: "text",
-                placeholder: "John Doe",
-              },
-              {
-                id: "email",
-                label: "Email Address",
-                type: "email",
-                placeholder: "you@example.com",
-              },
-            ].map((field) => (
-              <div key={field.id}>
-                <label
-                  htmlFor={field.id}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  {field.label}
-                </label>
-                <input
-                  type={field.type}
-                  id={field.id}
-                  placeholder={field.placeholder}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition duration-200"
-                />
-              </div>
-            ))}
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                Your Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                placeholder="John Doe"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                placeholder="you@example.com"
+              />
+            </div>
           </div>
 
           <div>
-            <label
-              htmlFor="subject"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
               Subject
             </label>
             <input
               type="text"
               id="subject"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
               placeholder="What's this about?"
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition duration-200"
             />
           </div>
 
           <div>
-            <label
-              htmlFor="category"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
               Category
             </label>
             <select
               id="category"
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition duration-200"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 bg-white"
             >
               <option value="">Select a category</option>
               <option value="technical">Technical Issue</option>
               <option value="billing">Billing & Payments</option>
-              <option value="course">Course Content</option>
+              <option value="course">Course Content & Learning</option>
               <option value="account">Account Help</option>
+              <option value="academic">Academic Support</option>
               <option value="other">Other</option>
             </select>
           </div>
 
           <div>
-            <label
-              htmlFor="message"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
               Message
             </label>
             <textarea
               id="message"
-              rows="5"
+              rows={5}
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
               placeholder="Describe your issue in detail..."
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition duration-200"
             ></textarea>
-          </div>
-
-          <div>
-            <label
-              htmlFor="attachment"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Attachments (optional)
-            </label>
-            <div className="flex items-center">
-              <label className="cursor-pointer bg-gray-100 hover:bg-gray-200 px-4 py-3 rounded-lg border border-gray-200 transition-colors">
-                <span className="text-gray-700">Choose File</span>
-                <input type="file" id="attachment" className="hidden" />
-              </label>
-              <span className="ml-3 text-sm text-gray-500">No file chosen</span>
-            </div>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-6 rounded-lg transition-all shadow hover:shadow-md hover:ring-2 hover:ring-teal-300"
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-6 rounded-lg transition-colors shadow-sm"
           >
             Submit Request
           </button>

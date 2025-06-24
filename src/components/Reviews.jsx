@@ -362,7 +362,7 @@ const Reviews = () => {
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
             Your feedback helps us improve our courses and helps other students make informed decisions.
           </p>
-          <button className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-8 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg">
+          <button className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg">
             Write a Review
           </button>
         </div>

@@ -173,7 +173,7 @@ const AboutUs = () => {
               {features.map((feature, index) => (
                 <div
                   key={feature.id}
-                  className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg bg-white hover:shadow-sm hover:border-l-4 hover:border-l-purple-500 transition-all duration-300 group-hover:transform group-hover:translate-x-1 group-hover:shadow-md"
+                  className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg bg-white hover:shadow-sm hover:border-l-4 hover:border-l-teal-600 transition-all duration-300 group-hover:transform group-hover:translate-x-1 group-hover:shadow-md"
                   style={{
                     transitionDelay: `${index * 100}ms`
                   }}
@@ -183,7 +183,7 @@ const AboutUs = () => {
                   >
                     <div className="w-4 h-4 group-hover:rotate-12 group-hover:translate-x-0.5 transition-all duration-300">{feature.icon}</div>
                   </div>
-                  <span className="text-gray-900 font-medium text-sm group-hover:text-purple-600 transition-colors duration-300">
+                  <span className="text-gray-900 font-medium text-sm group-hover:text-teal-600 transition-colors duration-300">
                     {feature.title}
                   </span>
                 </div>
@@ -193,7 +193,7 @@ const AboutUs = () => {
             {/* CTA Button */}
             <div className="pt-1">
               <button
-                className="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 ease-in-out
+                className="bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 ease-in-out
                  hover:bg-teal-600 hover:translate-x-1 hover:shadow-lg hover:shadow-teal-600/40"
               >
                 Explore More →
