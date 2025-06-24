@@ -27,6 +27,11 @@ const ViewCourse = () => {
   const [expandedModule, setExpandedModule] = useState(null);
   const [showVideoModal, setShowVideoModal] = useState(false);
 
+  // Scroll to top when component mounts or when course ID changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
+
   // Function to get course data based on ID
   const getCourseData = (courseId) => {
     const courses = {

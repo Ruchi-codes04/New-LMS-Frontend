@@ -109,7 +109,7 @@ function App() {
           <Route path="/about/contact" element={<ContactUs />} />
 
           {/* Student Routes */}
-          <Route path="/students/customer-support" element={<CustomerSupport />} />
+          <Route path="/students/student-support" element={<CustomerSupport />} />
           <Route path="/students/events" element={<Events />} />
           <Route path="/students/internship-support" element={<InternshipSupport />} />
           <Route path="/students/career-support" element={<CareerSupport />} />

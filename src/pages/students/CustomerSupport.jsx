@@ -1,18 +1,15 @@
-import React, { useState } from "react";
-import { 
-  FaHeadset, 
-  FaEnvelope, 
-  FaPhone, 
-  FaComments, 
-  FaQuestionCircle, 
-  FaPaperPlane, 
-  FaClock, 
+import React from "react";
+import {
+  FaHeadset,
+  FaEnvelope,
+  FaPhone,
+  FaComments,
+  FaPaperPlane,
+  FaClock,
   FaUsers,
-  FaChevronRight,
-  FaPlus,
-  FaMinus,
-  FaTimes
+  FaChevronRight
 } from "react-icons/fa";
+import FAQ from "../../components/FAQ";
 
 // FAQ Data
 const faqs = [
@@ -135,17 +132,11 @@ const StudentTemplate = ({ title, subtitle, children }) => (
 );
 
 const CustomerSupport = () => {
-  const [showAllFAQs, setShowAllFAQs] = useState(false);
-  const [activeFAQ, setActiveFAQ] = useState(null);
-
-  const toggleFAQ = (index) => {
-    setActiveFAQ(activeFAQ === index ? null : index);
-  };
 
   return (
     <StudentTemplate
-      title="Customer Support"
-      subtitle="We're here to help you with any questions or issues"
+      title="Student Support"
+      subtitle="We're here to help you succeed in your learning journey"
     >
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Left Column - Contact Options */}
@@ -184,7 +175,7 @@ const CustomerSupport = () => {
                     Response within 24 hours
                   </p>
                   <a
-                    href="mailto:support@brainbridge.com"
+                    href="mailto:students@brainbridge.com"
                     className="text-teal-600 hover:text-teal-800 font-medium flex items-center"
                   >
                     Send Email <FaChevronRight className="ml-1" />
@@ -213,27 +204,7 @@ const CustomerSupport = () => {
             </div>
           </div>
 
-          {/* FAQ Section */}
-          <div className="bg-white p-6 rounded-xl shadow-sm mt-8">
-            <h3 className="font-bold text-xl mb-4 flex items-center">
-              <FaQuestionCircle className="text-teal-600 mr-2" />
-              Common Questions
-            </h3>
-            <div className="space-y-4">
-              {faqs.slice(0, 3).map((faq, index) => (
-                <div key={index} className="pb-3 border-b border-gray-100">
-                  <h4 className="font-medium text-gray-800">{faq.question}</h4>
-                  <p className="text-sm text-gray-600 mt-1">{faq.answer}</p>
-                </div>
-              ))}
-              <button
-                onClick={() => setShowAllFAQs(!showAllFAQs)}
-                className="w-full text-teal-600 hover:text-teal-800 font-medium mt-4 text-center flex items-center justify-center"
-              >
-                {showAllFAQs ? "Show Less" : "View All FAQs"} <FaChevronRight className="ml-1" />
-              </button>
-            </div>
-          </div>
+
         </div>
 
         {/* Right Column - Main Content */}
@@ -274,7 +245,7 @@ const CustomerSupport = () => {
                 <FaUsers className="text-teal-600 w-6 h-6" />
               </div>
               <h2 className="text-2xl font-bold text-gray-800">
-                Meet Our Support Team
+                Meet Our Student Support Team
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -287,7 +258,7 @@ const CustomerSupport = () => {
                 <div>
                   <div className="font-semibold text-gray-800">Amit Kumar</div>
                   <div className="text-gray-600 text-sm">
-                    Senior Support Specialist
+                    Senior Student Success Specialist
                   </div>
                 </div>
               </div>
@@ -301,12 +272,12 @@ const CustomerSupport = () => {
                   <div className="font-semibold text-gray-800">
                     Priya Sharma
                   </div>
-                  <div className="text-gray-600 text-sm">Technical Support</div>
+                  <div className="text-gray-600 text-sm">Student Learning Advisor</div>
                 </div>
               </div>
             </div>
             <div className="mt-4 text-gray-600 text-sm">
-              Our friendly support team is here to help you succeed—don't
+              Our dedicated student support team is here to help you succeed in your learning journey—don't
               hesitate to reach out!
             </div>
           </div>
@@ -318,7 +289,7 @@ const CustomerSupport = () => {
                 <FaPaperPlane className="text-teal-600 w-6 h-6" />
               </div>
               <h2 className="text-2xl font-bold text-gray-800">
-                Submit a Support Request
+                Submit a Student Support Request
               </h2>
             </div>
 
@@ -383,8 +354,9 @@ const CustomerSupport = () => {
                   <option value="">Select a category</option>
                   <option value="technical">Technical Issue</option>
                   <option value="billing">Billing & Payments</option>
-                  <option value="course">Course Content</option>
+                  <option value="course">Course Content & Learning</option>
                   <option value="account">Account Help</option>
+                  <option value="academic">Academic Support</option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -433,46 +405,12 @@ const CustomerSupport = () => {
         </div>
       </div>
 
-      {/* Expanded FAQs Section - Now outside the main columns */}
-      {showAllFAQs && (
-        <div className="mt-12 max-w-7xl mx-auto px-6">
-          <div className="bg-white p-8 rounded-xl shadow-lg">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 flex items-center">
-                <FaQuestionCircle className="text-teal-600 mr-3" />
-                Frequently Asked Questions
-              </h2>
-              <button
-                onClick={() => setShowAllFAQs(false)}
-                className="text-teal-600 hover:text-teal-800 font-medium flex items-center"
-              >
-                Close FAQs <FaTimes className="ml-1" />
-              </button>
-            </div>
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="border-b border-gray-100 pb-4 cursor-pointer"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="font-medium text-gray-800">
-                      {faq.question}
-                    </h3>
-                    <span className="text-teal-600 text-xl">
-                      {activeFAQ === index ? <FaMinus /> : <FaPlus />}
-                    </span>
-                  </div>
-                  {activeFAQ === index && (
-                    <p className="text-gray-600 mt-2 pl-4">{faq.answer}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* FAQ Section */}
+      <FAQ
+        title="Frequently Asked Questions"
+        subtitle="Find answers to common questions about student support and learning"
+        faqs={faqs}
+      />
 
       {/* Community Section */}
       <div className="max-w-7xl mx-auto px-6 mt-8">
@@ -481,14 +419,13 @@ const CustomerSupport = () => {
             <FaComments className="text-teal-600 w-8 h-8" />
           </div>
           <h3 className="text-xl font-bold text-gray-800 mb-2">
-            Join Our Community
+            Join Our Student Community
           </h3>
           <p className="text-gray-600 mb-6 max-w-md mx-auto">
-            Connect with other students, share knowledge, and get help from the
-            community.
+            Connect with fellow students, share knowledge, get study tips, and support each other in your learning journey.
           </p>
           <button className="bg-white text-teal-600 hover:bg-teal-600 hover:text-white border border-teal-600 font-medium py-2 px-6 rounded-lg transition-colors">
-            Visit Community Forum
+            Visit Student Community Forum
           </button>
         </div>
       </div>
