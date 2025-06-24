@@ -161,22 +161,22 @@ const ContactUs = () => {
             </div>
 
             {/* Business Queries */}
-            <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="group relative bg-gradient-to-br from-teal-50 to-teal-100 p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="flex justify-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-white transition-all duration-500">
-                    <FaBuilding className="text-white text-2xl group-hover:text-blue-600 transition-colors duration-500" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-white transition-all duration-500">
+                    <FaBuilding className="text-white text-2xl group-hover:text-teal-600 transition-colors duration-500" />
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4 text-center group-hover:text-white transition-colors duration-500">
                   Corporate Training
                 </h3>
                 <div className="space-y-3 text-center">
-                  <p className="text-blue-700 font-bold text-lg group-hover:text-blue-200 transition-colors duration-500">
+                  <p className="text-teal-700 font-bold text-lg group-hover:text-teal-200 transition-colors duration-500">
                     📞 1800 210 2021
                   </p>
-                  <p className="text-blue-600 font-medium group-hover:text-blue-100 transition-colors duration-500">
+                  <p className="text-teal-600 font-medium group-hover:text-teal-100 transition-colors duration-500">
                     📧 enterprise@brainbridge.com
                   </p>
                   <p className="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-500">
@@ -187,22 +187,22 @@ const ContactUs = () => {
             </div>
 
             {/* Support */}
-            <div className="group relative bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="group relative bg-gradient-to-br from-teal-50 to-teal-100 p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="flex justify-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-white transition-all duration-500">
-                    <FaHeadset className="text-white text-2xl group-hover:text-purple-600 transition-colors duration-500" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-white transition-all duration-500">
+                    <FaHeadset className="text-white text-2xl group-hover:text-teal-600 transition-colors duration-500" />
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4 text-center group-hover:text-white transition-colors duration-500">
                   Technical Support
                 </h3>
                 <div className="space-y-3 text-center">
-                  <p className="text-purple-700 font-bold text-lg group-hover:text-purple-200 transition-colors duration-500">
+                  <p className="text-teal-700 font-bold text-lg group-hover:text-teal-200 transition-colors duration-500">
                     📞 1800 210 2022
                   </p>
-                  <p className="text-purple-600 font-medium group-hover:text-purple-100 transition-colors duration-500">
+                  <p className="text-teal-600 font-medium group-hover:text-teal-100 transition-colors duration-500">
                     📧 support@brainbridge.com
                   </p>
                   <p className="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-500">
