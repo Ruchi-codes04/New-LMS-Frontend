@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ThemeContext } from '../Profiledashboard/ThemeContext'; // Adjust path
 import Certificates from './Certificates'; // Adjust path to where Certificates.jsx is located
 
 const Dashboard = () => {
-  const { theme } = useContext(ThemeContext); // Access theme from context
   const [activeTab, setActiveTab] = useState('badges');
   const [student, setStudent] = useState(null);
   const [showAllTargets, setShowAllTargets] = useState(false);
@@ -101,7 +99,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
+    <div className="min-h-screen bg-gray-100 text-black">
       {/* Tabs */}
       <div className="flex justify-center mb-4 bg-gray-800 p-2 rounded-t-lg">
         <div className="flex space-x-4">
@@ -137,21 +135,21 @@ const Dashboard = () => {
                 {recentlyEarnedBadges.map((badge, index) => (
                   <div
                     key={index}
-                    className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+                    className="bg-white p-4 rounded-lg shadow-sm border border-gray-200"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-2xl">
+                        <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
                           {badge.icon}
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Awarded on {badge.date}</p>
-                          <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">
+                          <p className="text-sm text-gray-600">Awarded on {badge.date}</p>
+                          <p className="text-sm text-purple-600 font-medium">
                             {badge.name} {badge.description}
                           </p>
                         </div>
                       </div>
-                      <span className="text-purple-600 dark:text-purple-400 text-sm">✔</span>
+                      <span className="text-purple-600 text-sm">✔</span>
                     </div>
                   </div>
                 ))}
@@ -165,25 +163,25 @@ const Dashboard = () => {
                 {nextTargets.slice(0, showAllTargets ? nextTargets.length : 4).map((target, index) => (
                   <div
                     key={index}
-                    className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+                    className="bg-white p-4 rounded-lg shadow-sm border border-gray-200"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-2xl">
+                        <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
                           {target.icon}
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm text-gray-600 dark:text-gray-400">{target.name}</p>
-                          <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">{target.description}</p>
+                          <p className="text-sm text-gray-600">{target.name}</p>
+                          <p className="text-sm text-blue-600 font-medium">{target.description}</p>
                         </div>
                       </div>
-                      <span className="text-green-600 dark:text-green-400 text-sm">✔</span>
+                      <span className="text-green-600 text-sm">✔</span>
                     </div>
                   </div>
                 ))}
               </div>
               <button
-                className="mt-4 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 px-4 py-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-500"
+                className="mt-4 bg-gray-200 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-300"
                 onClick={handleViewToggle}
               >
                 {showAllTargets ? 'View Less' : 'View More'}
