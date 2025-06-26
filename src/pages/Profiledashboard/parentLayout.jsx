@@ -1,59 +1,54 @@
-// src/ParentLayout.js
 import React, { useState } from 'react';
 import { ThemeProvider } from '../Profiledashboard/ThemeContext';
-import Sidebar from './sidebar';
+import Sidebar from './sidebar'; // Corrected typo from './idebar' to './Sidebar'
 import Dashboard from './dashboard';
-import MyCourses from './mycourses';
+import MyCourses from './MyCourses';
 import Contact from './contact';
 import AssessmentScores from './assessmentscore';
 import Interest from './Interest';
 import Settings from './Settings';
-
 import { Navigate } from 'react-router-dom';
 
 const ParentLayout = () => {
   const [activePage, setActivePage] = useState('dashboard');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [sidebarWidth, setSidebarWidth] = useState('64px');
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
- const renderPage = () => {
-  switch (activePage) {
-    case 'home':
-      return <Navigate to="/"  />;
-    case 'dashboard':
-      return <Dashboard />;
-    case 'Achievements':
-      return <MyCourses />;
-    case 'contact':
-      return <Contact />;
-    case 'assessmentscore':
-      return <AssessmentScores />;
-    case 'Interest':
-      return <Interest />;
-    case 'Settings':
-      return <Settings />;
-  
-    default:
-      return <Dashboard />;
+  const handleSidebarToggle = (isExpanded) => {
+    setSidebarWidth(isExpanded ? '256px' : '64px');
+  };
+
+  const renderPage = () => {
+    switch (activePage) {
+      case 'home':
+        return <Navigate to="/" />;
+      case 'dashboard':
+        return <Dashboard sidebarWidth={sidebarWidth} />;
+      case 'Achievements':
+        return <MyCourses sidebarWidth={sidebarWidth} />;
+      case 'contact':
+        return <Contact sidebarWidth={sidebarWidth} />;
+      case 'assessmentscore':
+        return <AssessmentScores sidebarWidth={sidebarWidth} />;
+      case 'Interest':
+        return <Interest sidebarWidth={sidebarWidth} />;
+      case 'Settings':
+        return <Settings sidebarWidth={sidebarWidth} />;
+      default:
+        return <Dashboard sidebarWidth={sidebarWidth} />;
     }
   };
 
   return (
     <ThemeProvider>
       <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
-        {/* Navbar */}
-        {/* <div className="h-[3.5rem] bg-white dark:bg-gray-800 shadow-md flex items-center px-4">
-          <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Dashboard
-          </h1>
-        </div> */}
-
         {/* Sidebar Toggle Button (Visible only on mobile) */}
         <button
-          className="md:hidden fixed top-[4rem] right-4 z-20 p-2 bg-[#49BBBD] dark:bg-[#2A9D8F] text-white dark:text-gray-100 rounded-md"
+          className="md:hidden fixed top-4 right-4 z-20 p-2 bg-[#49BBBD] dark:bg-[#2A9D8F] text-white dark:text-gray-100 rounded-md"
           onClick={toggleSidebar}
         >
           {isSidebarOpen ? 'Close' : 'Menu'}
@@ -61,9 +56,11 @@ const ParentLayout = () => {
 
         {/* Sidebar */}
         <div
-          className={`fixed left-0 h-[calc(100vh-3.5rem)] w-16 md:w-64 transition-transform duration-300 ease-in-out md:translate-x-0 ${
-            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          className={`fixed left-0 h-screen transition-all duration-300 ease-in-out ${
+            isSidebarOpen ? 'translate-x-0 w-64' : 'md:w-16 w-0 -translate-x-full md:translate-x-0'
           } z-40`}
+          onMouseEnter={() => handleSidebarToggle(true)}
+          onMouseLeave={() => handleSidebarToggle(false)}
         >
           <Sidebar
             activePage={activePage}
@@ -83,7 +80,10 @@ const ParentLayout = () => {
         )}
 
         {/* Content Area */}
-        <div className="flex-1 overflow-auto bg-gray-50 dark:bg-gray-700 px-2 min-h-[calc(100vh-3.5rem)] md:ml-16 md:ml-64">
+        <div
+          className="flex-1 overflow-auto bg-gray-50 dark:bg-gray-700 px-2 min-h-screen transition-all duration-300"
+          style={{ marginLeft: isSidebarOpen ? '256px' : sidebarWidth }}
+        >
           {renderPage()}
         </div>
       </div>

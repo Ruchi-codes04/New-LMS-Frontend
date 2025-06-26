@@ -110,7 +110,7 @@ const Contact = ({ relatedCourseId }) => {
   };
 
   return (
-    <div className="sm:p-0 mt-12 md:mt-0 h-fit px-[10px] lg:py-6 lg:px-6 bg-white rounded-lg space-y-6 max-w-5xl mx-auto transition-colors duration-300">
+    <div className="sm:p-0 mt-12 md:mt-0 h-fit px-[10px] lg:py-6 lg:px-6 bg-white rounded-lg space-y-6 max-w-7xl mx-auto transition-colors duration-300">
       <div className="w-full max-w-full sm:max-w-[60%] px-4 py-6 mx-0 mt-12 md:mt-6 sm:mx-auto sm:px-6">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 text-center text-gray-900">
           Ticket Support

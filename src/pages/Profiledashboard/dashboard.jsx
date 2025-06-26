@@ -309,7 +309,7 @@ const Dashboard = () => {
   }, [navigate]);
 
   return (
-    <div className="bg-gradient-to-r from-[#f3f0f0] to-[#eaeaea] p-6 rounded-lg shadow w-full">
+    <div className="bg-gradient-to-r from-[#e2e2e2] to-[#eaeaea] p-6 rounded-lg shadow w-full">
       <Notification message={notification.message} type={notification.type} onClose={() => setNotification({ message: '', type: '' })} />
 
       <div className="bg-white p-6 rounded-xl shadow flex justify-between items-center mb-8">

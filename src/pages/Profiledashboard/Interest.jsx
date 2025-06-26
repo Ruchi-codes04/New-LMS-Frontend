@@ -86,7 +86,7 @@ const InterestPage = () => {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="w-full min-h-screen mx-auto p-6 bg-gray-100 rounded-lg shadow-lg max-w-5xl flex flex-col">
+    <div className="w-full min-h-screen mx-auto p-6 bg-gray-100 rounded-lg shadow-lg max-w-7xl flex flex-col">
       <h1 className="text-2xl font-bold text-gray-900 mb-4">
         What are your interests?
       </h1>

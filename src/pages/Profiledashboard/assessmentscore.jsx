@@ -163,7 +163,7 @@ const AssessmentScore = () => {
   };
 
   return (
-    <div className="sm:p-0 mt-12 md:mt-0 h-fit px-[10px] lg:py-6 lg:px-6 bg-white rounded-lg space-y-6 max-w-5xl mx-auto transition-colors duration-300"
+    <div className="sm:p-0 mt-12 md:mt-0 h-fit px-[10px] lg:py-6 lg:px-6 bg-white rounded-lg space-y-6 max-w-7xl mx-auto transition-colors duration-300"
     >
       <Notification
         message={notification.message}
