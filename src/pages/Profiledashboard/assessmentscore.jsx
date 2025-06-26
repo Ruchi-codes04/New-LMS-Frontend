@@ -67,7 +67,6 @@ const AssessmentScore = () => {
       setIsResultPopupOpen(false);
       return;
     }
-    setIsAssessmentPopupOpen(true);
 
     const fetchAssessments = async () => {
       setLoading(true);
@@ -93,7 +92,9 @@ const AssessmentScore = () => {
         setSelectedAssessmentId("");
         setAssessmentResult(null);
         if (assessmentData.length === 0) {
-          showNotification("No assessments found for this course.");
+          showNotification("No assessments found in this course.");
+        } else {
+          setIsAssessmentPopupOpen(true);
         }
       } catch (error) {
         console.error("Error fetching assessments:", error);
@@ -153,19 +154,6 @@ const AssessmentScore = () => {
     setSelectedCourseId(courseId);
   };
 
-  // Generate star rating component
-  const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <span key={i} className={i <= rating ? "text-yellow-400" : "text-gray-300"}>
-          ★
-        </span>
-      );
-    }
-    return stars;
-  };
-
   // Close popups
   const closePopups = () => {
     setIsAssessmentPopupOpen(false);
@@ -175,8 +163,7 @@ const AssessmentScore = () => {
   };
 
   return (
-    <div
-      className="sm:p-0 mt-12 md:mt-6 h-fit px-[10px] lg:py-6 lg:px-6 bg-white rounded-lg space-y-6 max-w-4xl mx-auto transition-colors duration-300"
+    <div className="sm:p-0 mt-12 md:mt-0 h-fit px-[10px] lg:py-6 lg:px-6 bg-white rounded-lg space-y-6 max-w-5xl mx-auto transition-colors duration-300"
     >
       <Notification
         message={notification.message}
@@ -258,23 +245,16 @@ const AssessmentScore = () => {
                     <p className="text-sm text-gray-600 mt-1">
                       {course.course.description || "No description available"}
                     </p>
-                    {/* Price */}
-                    <p className="text-sm text-green-600 mt-2">
-                      ₹{course.course.price || "Free"}
-                    </p>
-                    {/* Instructor and Rating */}
+                    {/* Instructor */}
                     <div className="flex items-center mt-2">
                       <img
                         src={course.course.instructor?.avatar || "https://via.placeholder.com/24"}
                         alt={course.course.instructor?.firstName || "Instructor"}
                         className="w-6 h-6 rounded-full mr-2"
                       />
-                      <span className="text-sm text-gray-700 mr-2">
+                      <span className="text-sm text-gray-700">
                         {course.course.instructor?.firstName || "Unknown"}{" "}
                         {course.course.instructor?.lastName || ""}
-                      </span>
-                      <span className="text-yellow-400">
-                        {renderStars(course.course.rating || 0)}
                       </span>
                     </div>
                   </div>
@@ -312,7 +292,7 @@ const AssessmentScore = () => {
               <button
                 onClick={closePopups}
                 className="mt-4 w-full bg-[#49BBBD] text-white p-2 rounded-md hover:bg-[#3da4a6] transition"
-              >
+                >
                 Close
               </button>
             </div>

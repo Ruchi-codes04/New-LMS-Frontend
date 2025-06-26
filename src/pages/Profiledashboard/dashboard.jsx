@@ -96,7 +96,7 @@ const MyCourses = () => {
     <div className="w-full">
       <Notification message={notification.message} type={notification.type} onClose={() => setNotification({ message: '', type: '' })} />
       <div className="flex justify-between items-start mb-4">
-        <h3 className="text-lg font-semibold text-gray-800">Assigned Courses</h3>
+        <h3 className="text-lg font-semibold text-gray-800">Our Courses</h3>
       </div>
 
       {loading ? (
@@ -309,7 +309,7 @@ const Dashboard = () => {
   }, [navigate]);
 
   return (
-    <div className="bg-gradient-to-r from-[#D8C4E5] to-[#E8D9F0] p-6 rounded-lg shadow w-full">
+    <div className="bg-gradient-to-r from-[#f3f0f0] to-[#eaeaea] p-6 rounded-lg shadow w-full">
       <Notification message={notification.message} type={notification.type} onClose={() => setNotification({ message: '', type: '' })} />
 
       <div className="bg-white p-6 rounded-xl shadow flex justify-between items-center mb-8">

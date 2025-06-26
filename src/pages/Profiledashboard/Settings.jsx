@@ -53,37 +53,49 @@ const Settings = () => {
     }
   }, [notification.message]);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        setNotification({ message: 'Authentication required. Please log in to access your profile.', type: 'error' });
-        return;
-      }
+useEffect(() => {
+  const fetchProfile = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setNotification({ message: 'Authentication required. Please log in to access your profile.', type: 'error' });
+      return;
+    }
 
-      try {
-        const res = await axios.get('https://lms-backend-flwq.onrender.com/api/v1/students/profile', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = res.data.data;
-        setStudent(data);
-        setFormData({
-          firstName: data.firstName || '',
-          lastName: data.lastName || '',
-          gender: data.gender || '',
-          country: data.country || '',
-          language: data.language || '',
-          timeZone: data.timeZone || '',
-          email: data.email || '',
-        });
-        setAvatarPreview(data.avatar || null);
-      } catch (err) {
-        setNotification({ message: 'Unable to retrieve profile data. Please try again later.', type: 'error' });
+    try {
+      const res = await axios.get('https://lms-backend-flwq.onrender.com/api/v1/students/profile', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = res.data.data;
+      if (!data) {
+        throw new Error('No profile data returned from the server.');
       }
-    };
+      setStudent(data);
+      setFormData({
+        firstName: data.firstName || '',
+        lastName: data.lastName || '',
+        gender: data.gender || '',
+        country: data.country || '',
+        language: data.language || '',
+        timeZone: data.timeZone || '',
+        email: data.email || '',
+      });
+      setAvatarPreview(data.avatar || null);
+    } catch (err) {
+      console.error('Error fetching profile:', err);
+      if (err.response?.status === 401) {
+        setNotification({ message: 'Session expired. Please log in again.', type: 'error' });
+        localStorage.removeItem('token');
+      } else {
+        setNotification({
+          message: err.response?.data?.message || 'Unable to retrieve profile data. Please try again later.',
+          type: 'error',
+        });
+      }
+    }
+  };
 
-    fetchProfile();
-  }, []);
+  fetchProfile();
+}, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -162,9 +174,10 @@ const Settings = () => {
     // Add reload or translation logic here if needed
   };
 
-  const handleThemeChange = (e) => {
-    setTheme(e.target.value);
-  };
+const handleThemeChange = (e) => {
+  console.log('Changing theme to:', e.target.value); // Debug
+  setTheme(e.target.value);
+};
 
   return (
     <div className="bg-gray-100 dark:bg-gray-900 p-5 font-sans min-h-screen">
@@ -185,35 +198,43 @@ const Settings = () => {
         </p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-5 mb-5 shadow-md">
-        <h2 className="text-xl mb-2 text-gray-900 dark:text-gray-100">Choose Your Theme</h2>
-        <div className="flex items-center gap-5">
-          <label className="flex flex-col items-center gap-2">
-            <input
-              type="radio"
-              name="theme"
-              value="light"
-              checked={theme === 'light'}
-              onChange={handleThemeChange}
-              className="hidden"
-            />
-            <div className={`w-48 h-16 border border-gray-300 bg-white cursor-pointer rounded ${theme === 'light' ? 'ring-2 ring-blue-500' : ''}`}></div>
-            <span className="text-gray-900 dark:text-gray-100">Light</span>
-          </label>
-          <label className="flex flex-col items-center gap-2">
-            <input
-              type="radio"
-              name="theme"
-              value="dark"
-              checked={theme === 'dark'}
-              onChange={handleThemeChange}
-              className="hidden"
-            />
-            <div className={`w-48 h-16 border border-gray-300 bg-gray-800 cursor-pointer rounded ${theme === 'dark' ? 'ring-2 ring-blue-500' : ''}`}></div>
-            <span className="text-gray-900 dark:text-gray-100">Dark</span>
-          </label>
-        </div>
-      </div>
+<div className="bg-white dark:bg-gray-800 rounded-lg p-5 mb-5 shadow-md">
+  <h2 className="text-xl mb-2 text-gray-900 dark:text-gray-100">Choose Your Theme</h2>
+  <div className="flex items-center gap-5">
+    <label className="flex flex-col items-center gap-2 cursor-pointer">
+      <input
+        type="radio"
+        name="theme"
+        value="light"
+        checked={theme === 'light'}
+        onChange={handleThemeChange}
+        className="hidden"
+      />
+      <div
+        className={`w-48 h-16 border border-gray-300 bg-white rounded ${
+          theme === 'light' ? 'ring-2 ring-blue-500' : ''
+        }`}
+      ></div>
+      <span className="text-gray-900 dark:text-gray-100">Light</span>
+    </label>
+    <label className="flex flex-col items-center gap-2 cursor-pointer">
+      <input
+        type="radio"
+        name="theme"
+        value="dark"
+        checked={theme === 'dark'}
+        onChange={handleThemeChange}
+        className="hidden"
+      />
+      <div
+        className={`w-48 h-16 border border-gray-300 bg-gray-800 rounded ${
+          theme === 'dark' ? 'ring-2 ring-blue-500' : ''
+        }`}
+      ></div>
+      <span className="text-gray-900 dark:text-gray-100">Dark</span>
+    </label>
+  </div>
+</div>
 
       <div className="bg-white dark:bg-gray-800 rounded-lg p-5 shadow-md">
         <div className="flex justify-between items-center mb-4">

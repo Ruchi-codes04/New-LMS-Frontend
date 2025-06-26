@@ -101,16 +101,16 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-100 text-black">
       {/* Tabs */}
-      <div className="flex justify-center mb-4 bg-gray-800 p-2 rounded-t-lg">
-        <div className="flex space-x-4">
+      <div className="flex justify-center mb-4 bg-white-800 p-2 rounded-t-lg">
+        <div className="flex w-full">
           <button
-            className={`px-4 py-2 rounded-t-lg ${activeTab === 'badges' ? 'bg-blue-700 text-white' : 'bg-gray-700 text-gray-300'}`}
+            className={`flex-1 px-4 py-2 rounded-t-lg ${activeTab === 'badges' ? 'bg-blue-400 text-white' : 'bg-gray-700 text-gray-300'}`}
             onClick={() => setActiveTab('badges')}
           >
             Badges
           </button>
           <button
-            className={`px-4 py-2 rounded-t-lg ${activeTab === 'certificates' ? 'bg-blue-700 text-white' : 'bg-gray-700 text-gray-300'}`}
+            className={`flex-1 px-4 py-2 rounded-t-lg ${activeTab === 'certificates' ? 'bg-blue-400 text-white' : 'bg-gray-700 text-gray-300'}`}
             onClick={() => setActiveTab('certificates')}
           >
             Certificates
