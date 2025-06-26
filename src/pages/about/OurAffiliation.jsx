@@ -214,34 +214,34 @@ const OurAffiliation = () => {
       </section>
 
       {/* Accreditations & Affiliations Grid Section */}
-      <section className="bg-gradient-to-br from-white to-teal-50 py-20">
-        <div className="max-w-7xl mx-auto px-8">
+      <section className="bg-gradient-to-br from-white to-teal-50 py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Section Title */}
-          <div className="mb-12">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-teal-800 to-teal-900 bg-clip-text text-transparent mb-2">
+          <div className="mb-8 sm:mb-12 text-center lg:text-left">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-teal-800 to-teal-900 bg-clip-text text-transparent mb-2">
               Accreditations & Affiliations
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-teal-600 to-teal-700 rounded shadow-sm"></div>
+            <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-teal-600 to-teal-700 rounded shadow-sm mx-auto lg:mx-0"></div>
           </div>
 
           {/* 20 Cards Grid - 4 Rows x 5 Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
 
             {/* Row 1 - Cards 1-5 */}
             {/* Card 1 - Skill India & NSDC */}
             <div className="text-center">
-              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 h-32 flex flex-col justify-center items-center mb-2 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="flex space-x-2 mb-2">
-                  <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-2 py-1 rounded text-xs font-bold shadow-md">
+              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 sm:p-4 h-24 sm:h-28 lg:h-32 flex flex-col justify-center items-center mb-2 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-1 sm:mb-2">
+                  <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs font-bold shadow-md">
                     Skill India
                   </div>
-                  <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-2 py-1 rounded text-xs font-bold shadow-md">
+                  <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs font-bold shadow-md">
                     NSDC
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-2 py-1 rounded text-xs font-medium shadow-md">
+              <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs font-medium shadow-md">
                 Skill India & NSDC (Center ID- TC101984)
               </div>
             </div>

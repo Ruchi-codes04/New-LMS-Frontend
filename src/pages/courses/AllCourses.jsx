@@ -1171,18 +1171,19 @@ const AllCourses = () => {
 
               {/* Pagination */}
               {filteredCourses.length > 0 && totalPages > 1 && (
-                <div className="mt-10 flex justify-center">
+                <div className="mt-8 sm:mt-10 flex justify-center">
                   <nav className="flex items-center">
                     <button
                       onClick={handlePrevious}
                       disabled={currentPage === 1}
-                      className={`px-3 py-1 rounded-l-md border border-gray-300 ${
+                      className={`px-2 sm:px-3 py-1 sm:py-2 rounded-l-md border border-gray-300 text-sm ${
                         currentPage === 1
                           ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                           : 'bg-white text-gray-500 hover:bg-gray-50'
                       }`}
                     >
-                      Previous
+                      <span className="hidden sm:inline">Previous</span>
+                      <span className="sm:hidden">Prev</span>
                     </button>
 
                     {getPageNumbers().map((page, index) => (
@@ -1208,13 +1209,14 @@ const AllCourses = () => {
                     <button
                       onClick={handleNext}
                       disabled={currentPage === totalPages}
-                      className={`px-3 py-1 rounded-r-md border border-gray-300 ${
+                      className={`px-2 sm:px-3 py-1 sm:py-2 rounded-r-md border border-gray-300 text-sm ${
                         currentPage === totalPages
                           ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                           : 'bg-white text-gray-700 hover:bg-gray-50'
                       }`}
                     >
-                      Next
+                      <span className="hidden sm:inline">Next</span>
+                      <span className="sm:hidden">Next</span>
                     </button>
                   </nav>
                 </div>

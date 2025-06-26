@@ -71,25 +71,25 @@ const CustomerSupport = () => {
       subtitle="We're here to help you with any questions or issues"
     >
       {/* Quick Help Section */}
-      <section className="bg-white p-8 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Quick Help</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-lg">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Quick Help</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {[
             {
-              icon: <FaHeadset className="text-teal-600 w-6 h-6" />,
+              icon: <FaHeadset className="text-teal-600 w-5 h-5 sm:w-6 sm:h-6" />,
               title: "Live Chat",
               text: "Instant help from our team",
               action: "Start Chat",
             },
             {
-              icon: <FaEnvelope className="text-teal-600 w-6 h-6" />,
+              icon: <FaEnvelope className="text-teal-600 w-5 h-5 sm:w-6 sm:h-6" />,
               title: "Email Us",
               text: "Response within 24 hours",
               action: "Send Email",
               href: "mailto:support@brainbridge.com",
             },
             {
-              icon: <FaPhone className="text-teal-600 w-6 h-6" />,
+              icon: <FaPhone className="text-teal-600 w-5 h-5 sm:w-6 sm:h-6" />,
               title: "Call Us",
               text: "Mon-Fri, 9am-5pm",
               action: "+91 8012345678",
@@ -98,15 +98,15 @@ const CustomerSupport = () => {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="bg-white p-6 rounded-xl border-l-4 border-teal-500 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all"
+              className="bg-white p-4 sm:p-6 rounded-xl border-l-4 border-teal-500 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all"
             >
               <div className="flex items-start">
-                <div className="bg-teal-100 p-3 rounded-full mr-4">
+                <div className="bg-teal-100 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{item.text}</p>
+                  <h3 className="font-semibold text-base sm:text-lg mb-1">{item.title}</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm mb-2">{item.text}</p>
                   {item.href ? (
                     <a
                       href={item.href}

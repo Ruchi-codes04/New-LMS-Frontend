@@ -192,14 +192,14 @@ const PlacementPartners = () => {
           </div>
 
           {/* Placement Partners Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
 
             {/* Row 1 */}
             <div className="text-center">
-              <div className="bg-white rounded-lg p-4 h-24 flex flex-col justify-center items-center mb-3 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                <div className="text-green-600 font-bold text-sm">Scribe EMR</div>
+              <div className="bg-white rounded-lg p-3 sm:p-4 h-20 sm:h-24 flex flex-col justify-center items-center mb-2 sm:mb-3 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                <div className="text-green-600 font-bold text-xs sm:text-sm">Scribe EMR</div>
               </div>
-              <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-2 py-1 rounded text-xs font-medium shadow-md">
+              <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs font-medium shadow-md">
                 Scribe EMR System
               </div>
             </div>

@@ -100,36 +100,36 @@ const SignUpPopup = () => {
   if (!isPopupVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative">
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
+      <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden relative">
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 z-10 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-7 h-7 sm:w-8 sm:h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors"
         >
-          <FaTimes className="text-gray-600" />
+          <FaTimes className="text-gray-600 text-sm sm:text-base" />
         </button>
 
         <div className="flex flex-col lg:flex-row">
           {/* Left Side - Illustration */}
-          <div className="lg:w-1/2 bg-gradient-to-br from-teal-50 to-blue-50 p-8 flex flex-col justify-center items-center relative">
+          <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-teal-50 to-blue-50 p-6 lg:p-8 flex-col justify-center items-center relative">
             {/* Career Benefits */}
-            <div className="absolute top-6 left-6 bg-white rounded-full px-3 py-1 shadow-sm">
-              <div className="flex items-center text-sm">
+            <div className="absolute top-4 lg:top-6 left-4 lg:left-6 bg-white rounded-full px-2 lg:px-3 py-1 shadow-sm">
+              <div className="flex items-center text-xs lg:text-sm">
                 <FaRocket className="text-purple-500 mr-1" />
                 <span className="text-gray-700 font-medium">Career Switch</span>
               </div>
             </div>
 
-            <div className="absolute top-20 right-6 bg-white rounded-full px-3 py-1 shadow-sm">
-              <div className="flex items-center text-sm">
+            <div className="absolute top-16 lg:top-20 right-4 lg:right-6 bg-white rounded-full px-2 lg:px-3 py-1 shadow-sm">
+              <div className="flex items-center text-xs lg:text-sm">
                 <FaGraduationCap className="text-blue-500 mr-1" />
                 <span className="text-gray-700 font-medium">Promotion</span>
               </div>
             </div>
 
-            <div className="absolute bottom-20 left-6 bg-white rounded-full px-3 py-1 shadow-sm">
-              <div className="flex items-center text-sm">
+            <div className="absolute bottom-16 lg:bottom-20 left-4 lg:left-6 bg-white rounded-full px-2 lg:px-3 py-1 shadow-sm">
+              <div className="flex items-center text-xs lg:text-sm">
                 <FaStar className="text-green-500 mr-1" />
                 <span className="text-gray-700 font-medium">Salary Hike</span>
               </div>
@@ -175,15 +175,15 @@ const SignUpPopup = () => {
           </div>
 
           {/* Right Side - Form */}
-          <div className="lg:w-1/2 p-8 flex flex-col justify-center">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <div className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                 Welcome!
               </h2>
             </div>
 
             {!showEmailForm && !showSignUpForm ? (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <button
                   onClick={() => setShowSignUpForm(true)}
                   className="w-full bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
@@ -192,8 +192,8 @@ const SignUpPopup = () => {
                 </button>
               </div>
             ) : showSignUpForm ? (
-              <form onSubmit={handleSignUpSubmit} className="space-y-4 max-h-96 overflow-y-auto scrollbar-hide">
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSignUpSubmit} className="space-y-3 sm:space-y-4 max-h-80 sm:max-h-96 overflow-y-auto scrollbar-hide">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <input
                     type="text"
                     name="firstName"

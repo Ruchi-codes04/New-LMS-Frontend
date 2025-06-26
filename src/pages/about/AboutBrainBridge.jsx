@@ -46,28 +46,28 @@ const AboutBrainBridge = () => {
       }} />
     <div className="font-sans antialiased">
       {/* Hero Section */}
-      <section className="bg-white pb-10 min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="max-w-lg">
-              <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6 text-gray-800">
+      <section className="bg-white pb-8 sm:pb-10 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+            <div className="max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-6 text-gray-800">
                 We are <span className="text-teal-600">South Asia's Premier Higher EdTech</span> Platform.
               </h1>
-              <p className="text-lg lg:text-xl leading-relaxed text-gray-600 mb-8 font-normal">
+              <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-gray-600 mb-6 sm:mb-8 font-normal">
                 Empowering over 10 million learners globally, Brain Bridge leverages advanced
                 technology, world-class faculty, and industry partnerships to bring impactful
                 online learning. Our mission? To redefine professional growth by making
                 quality education accessible to everyone.
               </p>
-              <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-600/30">
+              <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-600/30">
                 Talk to a career expert
               </button>
             </div>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center mt-8 lg:mt-0">
               <img
                 src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                 alt="Graduates celebrating with caps in the air"
-                className="w-full max-w-lg h-96 object-cover rounded-2xl shadow-2xl"
+                className="w-full max-w-sm sm:max-w-md lg:max-w-lg h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-2xl"
               />
             </div>
           </div>
@@ -75,26 +75,26 @@ const AboutBrainBridge = () => {
       </section>
 
       {/* Meet our founders Section */}
-      <section className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-12">
+      <section className="bg-white py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-8 sm:mb-12 text-center lg:text-left">
             Meet our <span className="text-teal-600">founders</span>
           </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Founder 1 */}
             <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
-                alt="Ronnie Screwvala" 
-                className="w-full h-64 object-cover"
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                alt="Ronnie Screwvala"
+                className="w-full h-48 sm:h-56 lg:h-64 object-cover"
               />
-              <div className="p-6">
-                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+              <div className="p-4 sm:p-6">
+                <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed">
                   Named in 'Asia's 25 Most Powerful People' by Fortune Magazine
                 </p>
-                <h3 className="text-xl font-bold text-gray-800 mb-1">Ronnie Screwvala</h3>
-                <p className="text-gray-600 text-sm">Co-Founder & Chairperson</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-1">Ronnie Screwvala</h3>
+                <p className="text-gray-600 text-xs sm:text-sm">Co-Founder & Chairperson</p>
               </div>
             </div>
 
@@ -134,18 +134,18 @@ const AboutBrainBridge = () => {
       </section>
 
       {/* What gives us an edge Section */}
-      <section className="bg-white py-20">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16">
             {/* Left Side - Sticky Content */}
-            <div className="lg:col-span-2 lg:sticky lg:top-20 lg:self-start">
-              <p className="text-sm font-semibold text-gray-600 mb-4 tracking-wide uppercase">
+            <div className="lg:col-span-2 lg:sticky lg:top-20 lg:self-start text-center lg:text-left">
+              <p className="text-xs sm:text-sm font-semibold text-gray-600 mb-3 sm:mb-4 tracking-wide uppercase">
                 LEARNER SUPPORT & SUCCESS
               </p>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
                 What gives us
               </h2>
-              <h2 className="text-4xl lg:text-5xl font-bold text-teal-600 mb-8">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-teal-600 mb-6 sm:mb-8">
                 an edge?
               </h2>
               <button
@@ -164,9 +164,9 @@ const AboutBrainBridge = () => {
             </div>
 
             {/* Right Side - Scrolling Cards */}
-            <div className="lg:col-span-3 space-y-8">
+            <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               {/* Row 1 - Two Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {/* Card 1 - Hiring Partners */}
                 <div
                   className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 ${

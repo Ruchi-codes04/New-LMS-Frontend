@@ -33,27 +33,28 @@ export default function TestimonialSection() {
   }, []);
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-6 sm:gap-8 lg:gap-10">
       {/* Left Text Content */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="ml-2 md:ml-10"
+        className="text-center md:text-left md:ml-2 lg:ml-10"
       >
-        <div className="inline-flex items-center px-6 py-2 bg-teal-600 text-white rounded-full text-sm font-medium mb-6">
+        <div className="inline-flex items-center px-4 sm:px-6 py-2 bg-teal-600 text-white rounded-full text-sm font-medium mb-4 sm:mb-6">
               Testimonials
             </div>
-        <h2 className="text-3xl font-bold text- mb-4">What They Say?</h2>
-        <p className="text-gray-600 mb-2">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">What They Say?</h2>
+        <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed">
           "TOTC's interactive quizzes and badges keep me motivated every day. Studying has never been this
           fun!" – Priya Nair, Student
+          <br />
           <br />
           "As a teacher, TOTC's tools simplified course management. I save hours each week on planning and
           grading." – Rahul Sharma, Instructor
         </p>
-        <p className="text-gray-600 mb-2">
+        <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
           "Our students now easily collaborate online. TOTC transformed our classes even when we can't
           meet in person." – Vikram Singh, School Administrator
         </p>
@@ -67,7 +68,7 @@ export default function TestimonialSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="rounded-2xl overflow-hidden w-full sm:w-80 h-96 mx-auto">
+        <div className="rounded-2xl overflow-hidden w-full sm:w-80 h-64 sm:h-80 lg:h-96 mx-auto">
           <AnimatePresence mode="wait">
             <motion.img
               key={index}
@@ -85,10 +86,10 @@ export default function TestimonialSection() {
         {/* Sliding Testimonial Card */}
         <div
           className="
-            absolute bottom-1 right-4 sm:right-20
+            absolute bottom-1 right-2 sm:right-4 lg:right-20
             md:left-1/2 md:right-auto
             md:translate-x-[-50%]
-            w-[190px] sm:w-[210px] md:w-[230px]
+            w-[160px] sm:w-[190px] md:w-[210px] lg:w-[230px]
           "
         >
           <AnimatePresence mode="wait">

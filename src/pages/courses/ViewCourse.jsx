@@ -296,28 +296,28 @@ const ViewCourse = () => {
       {/* Course Header */}
       <section className="py-18">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 
             {/* Left Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-6 lg:space-y-8">
 
               {/* Course Badge */}
-              <div className="flex items-center space-x-3">
-                <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span className="bg-teal-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
                   {course.category}
                 </span>
-                <span className="bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-sm font-bold">
+                <span className="bg-yellow-500 text-gray-900 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
                   Bestseller
                 </span>
-                <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <span className="bg-green-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
                   Updated {course.lastUpdated}
                 </span>
               </div>
 
               {/* Course Title and Description */}
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold mb-4">{course.title}</h1>
-                <p className="text-xl text-gray-400 mb-6">{course.description}</p>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">{course.title}</h1>
+                <p className="text-lg sm:text-xl text-gray-400 mb-4 sm:mb-6">{course.description}</p>
                 
                 {/* Course Stats */}
                 <div className="flex flex-wrap items-center gap-6 text-sm">

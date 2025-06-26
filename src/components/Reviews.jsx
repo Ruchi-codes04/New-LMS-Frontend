@@ -283,21 +283,21 @@ const Reviews = () => {
         </div>
 
         {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredReviews.map((review) => (
             <div key={review.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 {/* Review Header */}
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-3 sm:mb-4">
                   <img
                     src={review.avatar}
                     alt={review.name}
-                    className="w-12 h-12 rounded-full object-cover mr-4"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover mr-3 sm:mr-4"
                   />
                   <div>
-                    <h4 className="font-semibold text-gray-900">{review.name}</h4>
-                    <div className="flex items-center">
-                      <span className="text-sm text-gray-500 mr-2">{review.date}</span>
+                    <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{review.name}</h4>
+                    <div className="flex items-center flex-wrap gap-1 sm:gap-2">
+                      <span className="text-xs sm:text-sm text-gray-500">{review.date}</span>
                       <span className="bg-teal-100 text-teal-800 text-xs px-2 py-0.5 rounded-full">
                         {review.category}
                       </span>
