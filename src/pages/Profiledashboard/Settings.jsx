@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { ThemeContext } from '../Profiledashboard/ThemeContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const Notification = ({ message, type, onClose }) => {
   const { theme } = useContext(ThemeContext);

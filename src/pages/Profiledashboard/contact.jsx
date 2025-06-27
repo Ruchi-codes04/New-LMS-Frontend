@@ -110,26 +110,26 @@ const Contact = ({ relatedCourseId }) => {
   };
 
   return (
-    <div className="sm:p-0 mt-12 md:mt-0 h-fit px-[10px] lg:py-6 lg:px-6 bg-white rounded-lg space-y-6 max-w-7xl mx-auto transition-colors duration-300">
+    <div className="sm:p-0 mt-12 md:mt-0 h-fit px-[10px] lg:py-6 lg:px-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg space-y-6 max-w-7xl mx-auto transition-colors duration-300">
       <div className="w-full max-w-full sm:max-w-[60%] px-4 py-6 mx-0 mt-12 md:mt-6 sm:mx-auto sm:px-6">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 text-center text-gray-900">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 text-center text-gray-900 dark:text-white">
           Ticket Support
         </h2>
 
         {successMsg && (
-          <p className="text-green-600 text-sm sm:text-base mb-4 sm:mb-6 text-center">
+          <p className="text-green-600 dark:text-green-400 text-sm sm:text-base mb-4 sm:mb-6 text-center">
             {successMsg}
           </p>
         )}
         {errorMsg && (
-          <p className="text-red-600 text-sm sm:text-base mb-4 sm:mb-6 text-center">
+          <p className="text-red-600 dark:text-red-400 text-sm sm:text-base mb-4 sm:mb-6 text-center">
             {errorMsg}
           </p>
         )}
 
         <div className="space-y-4 sm:space-y-5">
           <div>
-            <label className="block text-gray-700 mb-1 text-sm sm:text-base font-medium">
+            <label className="block text-gray-700 dark:text-gray-300 mb-1 text-sm sm:text-base font-medium">
               Name
             </label>
             <input
@@ -137,18 +137,18 @@ const Contact = ({ relatedCourseId }) => {
               name="name"
               value={form.name}
               disabled
-              className="w-full border border-gray-300 rounded-lg p-2 sm:p-3 bg-gray-100 cursor-not-allowed text-gray-600 text-sm sm:text-base focus:ring-0"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-2 sm:p-3 bg-gray-100 dark:bg-gray-800 cursor-not-allowed text-gray-600 dark:text-gray-400 text-sm sm:text-base focus:ring-0"
             />
           </div>
           <div>
-            <label className="block text-gray-700 mb-1 text-sm sm:text-base font-medium">
+            <label className="block text-gray-700 dark:text-gray-300 mb-1 text-sm sm:text-base font-medium">
               Related Course
             </label>
             <select
               name="relatedCourse"
               value={form.relatedCourse}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-2 sm:p-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-2 sm:p-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             >
               <option value="">Select a course (optional)</option>
               {courses.map((course) => (
@@ -159,7 +159,7 @@ const Contact = ({ relatedCourseId }) => {
             </select>
           </div>
           <div>
-            <label className="block text-gray-700 mb-1 text-sm sm:text-base font-medium">
+            <label className="block text-gray-700 dark:text-gray-300 mb-1 text-sm sm:text-base font-medium">
               Subject
             </label>
             <input
@@ -167,32 +167,32 @@ const Contact = ({ relatedCourseId }) => {
               name="subject"
               value={form.subject}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-2 sm:p-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-2 sm:p-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               required
             />
           </div>
           <div>
-            <label className="block text-gray-700 mb-1 text-sm sm:text-base font-medium">
+            <label className="block text-gray-700 dark:text-gray-300 mb-1 text-sm sm:text-base font-medium">
               Message
             </label>
             <textarea
               name="message"
               value={form.message}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-2 sm:p-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 resize-y"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-2 sm:p-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 resize-y"
               rows={4}
               required
             ></textarea>
           </div>
           <div>
-            <label className="block text-gray-700 mb-1 text-sm sm:text-base font-medium">
+            <label className="block text-gray-700 dark:text-gray-300 mb-1 text-sm sm:text-base font-medium">
               Category
             </label>
             <select
               name="category"
               value={form.category}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-2 sm:p-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-2 sm:p-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               required
             >
               <option value="technical">Technical</option>
@@ -206,7 +206,7 @@ const Contact = ({ relatedCourseId }) => {
             type="button"
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full bg-[#49BBBD] text-white py-2 sm:py-3 px-4 rounded-lg hover:bg-[#3A9D9D] transition duration-200 text-sm sm:text-base font-medium disabled:bg-blue-300 disabled:cursor-not-allowed"
+            className="w-full bg-[#49BBBD] dark:bg-blue-600 text-white py-2 sm:py-3 px-4 rounded-lg hover:bg-[#3A9D9D] dark:hover:bg-blue-500 transition duration-200 text-sm sm:text-base font-medium disabled:bg-blue-300 dark:disabled:bg-blue-400 disabled:cursor-not-allowed"
           >
             {loading ? 'Submitting...' : 'Submit Ticket'}
           </button>
